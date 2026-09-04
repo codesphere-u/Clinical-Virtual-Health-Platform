@@ -1,0 +1,29 @@
+{
+  "name": "clinical-virtual-health-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-grade Next-Generation Clinical & Virtual Health Platform",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "db:generate": "pnpm --filter @aura/database run db:generate",
+    "db:migrate": "pnpm --filter @aura/database run db:migrate",
+    "db:seed": "pnpm --filter @aura/database run db:seed"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "prettier": "^3.5.2",
+    "turbo": "^2.4.4",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@11.25.0"
+}

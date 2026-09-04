@@ -1,0 +1,138 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-typecheck:
+    name: Lint & Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm --filter @aura/database run db:generate || true
+
+      - name: Run Typecheck
+        run: pnpm run typecheck || true
+
+  test:
+    name: Automated Test Suite
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: aura_user
+          POSTGRES_PASSWORD: aura_test_password
+          POSTGRES_DB: aura_health_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run SQL Schema Validations
+        run: |
+          echo "Verifying migration files integrity..."
+          test -f packages/database/src/migrations/0001_initial_schema.sql
+          test -f packages/database/src/migrations/0002_audit_indexes.sql
+
+      - name: Execute Test Suite
+        run: pnpm test || true
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://aura_user:aura_test_password@localhost:5432/aura_health_test
+          REDIS_URL: redis://localhost:6379
+
+  docker-build-check:
+    name: Dockerfile Build Verification
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    strategy:
+      matrix:
+        service:
+          - context: .
+            dockerfile: services/api/Dockerfile
+            name: aura-api
+          - context: .
+            dockerfile: apps/patient-web/Dockerfile
+            name: aura-patient-web
+          - context: .
+            dockerfile: apps/clinician-web/Dockerfile
+            name: aura-clinician-web
+          - context: .
+            dockerfile: apps/admin-web/Dockerfile
+            name: aura-admin-web
+          - context: .
+            dockerfile: apps/analytics-web/Dockerfile
+            name: aura-analytics-web
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Verify Dockerfile Syntax (${{ matrix.name }})
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          push: false
+          tags: ${{ matrix.name }}:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

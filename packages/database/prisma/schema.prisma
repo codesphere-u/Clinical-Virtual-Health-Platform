@@ -1,0 +1,501 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum UserRole {
+  patient
+  clinician
+  admin
+  safeguarding_lead
+  auditor
+}
+
+enum VerificationStatus {
+  unverified
+  pending_review
+  verified
+  rejected
+  expired
+}
+
+enum AppointmentStatus {
+  available
+  booked
+  confirmed
+  reminder_sent
+  patient_checked_in
+  patient_waiting
+  clinician_ready
+  consultation_started
+  consultation_completed
+  cancelled
+  no_show
+  rescheduled
+}
+
+enum EncounterType {
+  telemedicine_video
+  telemedicine_audio
+  async_review
+  in_person
+}
+
+enum PrescriptionStatus {
+  draft
+  authorized
+  dispensed
+  cancelled
+  expired
+}
+
+enum SeverityLevel {
+  mild
+  moderate
+  severe
+  life_threatening
+}
+
+enum InvestigationStatus {
+  ordered
+  sample_collected
+  in_progress
+  resulted
+  reviewed
+  cancelled
+}
+
+model Organization {
+  id             String   @id @default(uuid())
+  name           String
+  jurisdiction   String   @default("NG")
+  regulatoryBody String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  users          User[]
+
+  @@map("organizations")
+}
+
+model User {
+  id               String       @id @default(uuid())
+  orgId            String?
+  organization     Organization? @relation(fields: [orgId], references: [id])
+  email            String       @unique
+  phoneNumber      String?      @unique
+  passwordHash     String
+  role             UserRole     @default(patient)
+  isMfaEnabled     Boolean      @default(false)
+  mfaSecret        String?
+  isActive         Boolean      @default(true)
+  isSuspended      Boolean      @default(false)
+  suspensionReason String?
+  lastLoginAt      DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  patientProfile   PatientProfile?
+  clinicianProfile ClinicianProfile?
+  auditEvents      AuditEvent[]
+  sessions         Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenFamily String
+  refreshTokenHash String
+  deviceFingerprint String?
+  ipAddress   String?
+  userAgent   String?
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  @@map("sessions")
+}
+
+model PatientProfile {
+  id                  String             @id @default(uuid())
+  userId              String             @unique
+  user                User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mrn                 String             @unique // Medical Record Number e.g. CVH-2026-0001
+  firstName           String
+  middleName          String?
+  lastName            String
+  dateOfBirth         DateTime
+  gender              String
+  bloodGroup          String?
+  genotype            String?            // AA, AS, SS, AC
+  photoUrl            String?
+  livenessVerified    Boolean            @default(false)
+  idCardVerified      Boolean            @default(false)
+  verificationStatus  VerificationStatus @default(unverified)
+  ninBvnHash          String?
+  nationality         String             @default("Nigerian")
+  stateOfOrigin       String?
+  residentialAddress  Json?
+  emergencyContact    Json?
+  preferredLanguage   String             @default("en")
+  safeguardingFlag    Boolean            @default(false)
+  safeguardingNotes   String?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  appointments        Appointment[]
+  clinicalNotes       ClinicalNote[]
+  allergies           PatientAllergy[]
+  conditions          PatientCondition[]
+  prescriptions       Prescription[]
+  investigationOrders InvestigationOrder[]
+  feedbacks           PatientFeedback[]
+
+  @@map("patient_profiles")
+}
+
+model ClinicianProfile {
+  id                              String             @id @default(uuid())
+  userId                          String             @unique
+  user                            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clinicianCode                   String             @unique // e.g. GMC-7654321
+  firstName                       String
+  lastName                        String
+  title                           String             // Dr, Prof, Mr
+  photoUrl                        String?
+  primarySpecialty                String
+  subSpecialties                  String[]           @default([])
+  primaryLicensingBody            String             // GMC, MDCN
+  primaryLicenseNumber            String
+  gmcRevalidationDueDate          DateTime?
+  mdcnAnnualPracticingLicenseDate DateTime?
+  compliancePassportStatus        VerificationStatus @default(pending_review)
+  bio                             String?
+  consultationFeeCents            Int                @default(0)
+  currency                        String             @default("NGN")
+  isAcceptingNewPatients          Boolean            @default(true)
+  createdAt                       DateTime           @default(now())
+  updatedAt                       DateTime           @updatedAt
+
+  credentials                     ClinicianCredential[]
+  availabilitySlots               AvailabilitySlot[]
+  appointments                    Appointment[]
+  clinicalNotes                   ClinicalNote[]
+  prescriptions                   Prescription[]
+  investigationOrders             InvestigationOrder[]
+  feedbacks                       PatientFeedback[]
+
+  @@map("clinician_profiles")
+}
+
+model ClinicianCredential {
+  id                 String             @id @default(uuid())
+  clinicianId        String
+  clinician          ClinicianProfile   @relation(fields: [clinicianId], references: [id], onDelete: Cascade)
+  credentialType     String             // Primary Medical Qualification, GMC, Safeguarding L3
+  issuer             String
+  certificateNumber  String?
+  documentUrl        String
+  issueDate          DateTime
+  expiryDate         DateTime?
+  verificationStatus VerificationStatus @default(pending_review)
+  verifiedAt         DateTime?
+  verificationNotes  String?
+  createdAt          DateTime           @default(now())
+
+  @@map("clinician_credentials")
+}
+
+model AvailabilitySlot {
+  id              String           @id @default(uuid())
+  clinicianId     String
+  clinician       ClinicianProfile @relation(fields: [clinicianId], references: [id], onDelete: Cascade)
+  startTime       DateTime
+  endTime         DateTime
+  isBooked        Boolean          @default(false)
+  isRecurring     Boolean          @default(false)
+  recurrenceRule  String?
+  isEmergencySlot Boolean          @default(false)
+  createdAt       DateTime         @default(now())
+  appointment     Appointment?
+
+  @@index([clinicianId, startTime, endTime])
+  @@map("availability_slots")
+}
+
+model Appointment {
+  id                         String            @id @default(uuid())
+  patientId                  String
+  patient                    PatientProfile    @relation(fields: [patientId], references: [id])
+  clinicianId                String
+  clinician                  ClinicianProfile  @relation(fields: [clinicianId], references: [id])
+  slotId                     String?           @unique
+  slot                       AvailabilitySlot? @relation(fields: [slotId], references: [id])
+  scheduledStart             DateTime
+  scheduledEnd               DateTime
+  status                     AppointmentStatus @default(booked)
+  encounterType              EncounterType     @default(telemedicine_video)
+  cancellationReason         String?
+  patientCheckedInAt         DateTime?
+  patientJoinedWaitingRoomAt DateTime?
+  clinicianJoinedRoomAt      DateTime?
+  consultationStartedAt      DateTime?
+  consultationEndedAt        DateTime?
+  roomSid                    String?
+  idempotencyKey             String?           @unique
+  createdAt                  DateTime          @default(now())
+  updatedAt                  DateTime          @updatedAt
+
+  clinicalNote               ClinicalNote?
+  prescriptions              Prescription[]
+  investigationOrders        InvestigationOrder[]
+  feedback                   PatientFeedback?
+
+  @@index([patientId])
+  @@index([clinicianId, status])
+  @@map("appointments")
+}
+
+model ClinicalNote {
+  id                             String           @id @default(uuid())
+  appointmentId                  String           @unique
+  appointment                    Appointment      @relation(fields: [appointmentId], references: [id])
+  patientId                      String
+  patient                        PatientProfile   @relation(fields: [patientId], references: [id])
+  clinicianId                    String
+  clinician                      ClinicianProfile @relation(fields: [clinicianId], references: [id])
+  version                        Int              @default(1)
+  isLocked                       Boolean          @default(false)
+  lockedAt                       DateTime?
+
+  // Structured SOAP & History
+  presentingComplaint            String
+  historyOfPresentingComplaint   String
+  pastMedicalHistory             String?
+  pastSurgicalHistory            String?
+  drugHistory                    String?
+  socialHistory                  String?
+  familyHistory                  String?
+  reviewOfSystems                Json?
+
+  // Examination
+  examinationFindings            String?
+  vitals                         Json?
+
+  // Assessment & Diagnoses
+  primaryDiagnosisCode           String?
+  primaryDiagnosisName           String
+  secondaryDiagnoses             Json?            @default("[]")
+  differentialDiagnoses          String?
+  clinicalReasoning              String?
+
+  // Intervention & Treatment Plan
+  treatmentPlan                  String
+  followUpInstructions          String?
+  safetyNettingAdvice            String
+
+  // AI Attestation
+  aiGeneratedDraft               Boolean          @default(false)
+  aiModelVersion                 String?
+  clinicianReviewedAndApproved   Boolean          @default(true)
+
+  createdAt                      DateTime         @default(now())
+  updatedAt                      DateTime         @updatedAt
+  amendments                     ClinicalNoteAmendment[]
+
+  @@map("clinical_notes")
+}
+
+model ClinicalNoteAmendment {
+  id              String       @id @default(uuid())
+  clinicalNoteId  String
+  clinicalNote    ClinicalNote @relation(fields: [clinicalNoteId], references: [id], onDelete: Cascade)
+  amendedByUserId String
+  amendmentReason String
+  previousContent Json
+  createdAt       DateTime     @default(now())
+
+  @@map("clinical_note_amendments")
+}
+
+model PatientAllergy {
+  id          String         @id @default(uuid())
+  patientId   String
+  patient     PatientProfile @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  substance   String
+  reaction    String
+  severity    SeverityLevel  @default(moderate)
+  isActive    Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+
+  @@map("patient_allergies")
+}
+
+model PatientCondition {
+  id            String         @id @default(uuid())
+  patientId     String
+  patient       PatientProfile @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  conditionName String
+  icd10Code     String?
+  diagnosisDate DateTime?
+  status        String         @default("active")
+  createdAt     DateTime       @default(now())
+
+  @@map("patient_conditions")
+}
+
+model FormularyMedication {
+  id                   String   @id @default(uuid())
+  jurisdiction         String   @default("NG")
+  genericName          String
+  brandNames           String[] @default([])
+  dosageForm           String
+  strengths            String[] @default([])
+  standardRoute        String
+  isControlledSubstance Boolean  @default(false)
+  contraindications    String[] @default([])
+  interactionKeywords  String[] @default([])
+  blackBoxWarning      String?
+  createdAt            DateTime @default(now())
+
+  @@map("formulary_medications")
+}
+
+model Prescription {
+  id                     String             @id @default(uuid())
+  prescriptionCode       String             @unique // RX-2026-0001
+  appointmentId          String?
+  appointment            Appointment?       @relation(fields: [appointmentId], references: [id])
+  patientId              String
+  patient                PatientProfile     @relation(fields: [patientId], references: [id])
+  clinicianId            String
+  clinician              ClinicianProfile   @relation(fields: [clinicianId], references: [id])
+  status                 PrescriptionStatus @default(authorized)
+  digitalSignatureHash   String
+  signedAt               DateTime           @default(now())
+  dispensingPharmacyNotes String?
+  pdfDocumentUrl         String?
+  idempotencyKey         String?            @unique
+  createdAt              DateTime           @default(now())
+  items                  PrescriptionItem[]
+
+  @@map("prescriptions")
+}
+
+model PrescriptionItem {
+  id                  String       @id @default(uuid())
+  prescriptionId      String
+  prescription        Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  medicationName      String
+  strength            String
+  dosage              String
+  frequency           String
+  route               String
+  duration            String
+  quantity            Int
+  specialInstructions String?
+  repeatsAllowed      Int          @default(0)
+  createdAt           DateTime     @default(now())
+
+  @@map("prescription_items")
+}
+
+model InvestigationOrder {
+  id                      String              @id @default(uuid())
+  orderCode               String              @unique
+  appointmentId           String?
+  appointment             Appointment?        @relation(fields: [appointmentId], references: [id])
+  patientId               String
+  patient                 PatientProfile      @relation(fields: [patientId], references: [id])
+  clinicianId             String
+  clinician               ClinicianProfile    @relation(fields: [clinicianId], references: [id])
+  testType                String
+  clinicalIndication      String
+  status                  InvestigationStatus @default(ordered)
+  priority                String              @default("routine")
+  requiresClinicianReview Boolean             @default(true)
+  reviewedAt              DateTime?
+  clinicianCommentary     String?
+  releasedToPatient       Boolean             @default(false)
+  releasedAt              DateTime?
+  createdAt               DateTime            @default(now())
+  results                 InvestigationResult[]
+
+  @@map("investigation_orders")
+}
+
+model InvestigationResult {
+  id                 String             @id @default(uuid())
+  orderId            String
+  order              InvestigationOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  parameterName      String
+  numericValue       Float?
+  textValue          String?
+  unit               String?
+  referenceRangeLow  Float?
+  referenceRangeHigh Float?
+  isAbnormal         Boolean            @default(false)
+  isCritical         Boolean            @default(false)
+  documentUrl        String?
+  createdAt          DateTime           @default(now())
+
+  @@map("investigation_results")
+}
+
+model PatientFeedback {
+  id                  String           @id @default(uuid())
+  appointmentId       String           @unique
+  appointment         Appointment      @relation(fields: [appointmentId], references: [id])
+  patientId           String
+  patient             PatientProfile   @relation(fields: [patientId], references: [id])
+  clinicianId         String
+  clinician           ClinicianProfile @relation(fields: [clinicianId], references: [id])
+  rating              Int
+  communicationRating Int?
+  clarityRating       Int?
+  feedbackComments    String?
+  isPublished         Boolean          @default(true)
+  createdAt           DateTime         @default(now())
+
+  @@map("patient_feedbacks")
+}
+
+model AuditEvent {
+  id           String   @id @default(uuid())
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+  role         String?
+  action       String   // RECORD_VIEW, PRESCRIPTION_SIGN, SUMMARY_AMEND, LOGIN_SUCCESS
+  resourceType String
+  resourceId   String
+  ipAddress    String?
+  userAgent    String?
+  jurisdiction String?
+  metadata     Json?
+  hash         String   // SHA-256 tamper-evident hash
+  createdAt    DateTime @default(now())
+
+  @@index([action, resourceType, resourceId])
+  @@map("audit_events")
+}
+
+model CrossBorderTransferLog {
+  id               String   @id @default(uuid())
+  patientId        String
+  clinicianId      String
+  fromJurisdiction String   // e.g. "NG"
+  toJurisdiction   String   // e.g. "GB"
+  dataTier         String
+  legalBasis       String
+  transferToken    String   @unique
+  ipAddress        String?
+  createdAt        DateTime @default(now())
+
+  @@map("cross_border_transfer_logs")
+}
