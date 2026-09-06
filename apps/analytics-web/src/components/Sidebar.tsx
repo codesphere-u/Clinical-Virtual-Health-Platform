@@ -41,9 +41,9 @@ export function Sidebar({ activeReport, onNavigate }: SidebarProps) {
     <nav className="sidebar" aria-label="Analytics Navigation">
       {/* Logo */}
       <div className="sidebar-logo">
-        <div className="sidebar-logo-icon">AC</div>
+        <div className="sidebar-logo-icon">DOC</div>
         <div className="sidebar-logo-text">
-          <span className="sidebar-logo-title">Aura Analytics</span>
+          <span className="sidebar-logo-title">DOCAAS Analytics</span>
           <span className="sidebar-logo-sub">Executive Intelligence</span>
         </div>
       </div>

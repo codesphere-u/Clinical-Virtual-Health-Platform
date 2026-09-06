@@ -414,3 +414,97 @@ body {
 
 .compliance-ng { border-color: #6ee7b7; background: #ecfdf5; color: #065f46; }
 .compliance-gb { border-color: #93c5fd; background: #eff6ff; color: #1e40af; }
+
+/* ─── Page content wrapper ───────────────────────────────────── */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Charts row ─────────────────────────────────────────────── */
+.charts-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .charts-row { flex-direction: column; }
+  .charts-row > * { flex: unset !important; width: 100% !important; }
+}
+
+/* ─── KPI card icon + delta ──────────────────────────────────── */
+.kpi-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-delta {
+  font-size: 11px;
+  color: var(--aura-slate-400);
+  margin: 0;
+}
+
+/* ─── Button outline ─────────────────────────────────────────── */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--aura-slate-200);
+  background: white;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--aura-slate-600);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-outline:hover {
+  background: var(--aura-slate-50);
+  border-color: var(--aura-slate-300, #cbd5e1);
+  color: var(--aura-slate-900);
+}
+
+/* ─── Chart card header ──────────────────────────────────────── */
+.chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.chart-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--aura-slate-900);
+  margin: 0;
+}
+
+.chart-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--aura-slate-100);
+  color: var(--aura-slate-600);
+}
+
+/* ─── Fade-in animation ──────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }

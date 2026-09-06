@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from '../context/auth';
 import { PersonaSwitcher } from '../components/PersonaSwitcher';
+import { PatientShell } from '../components/PatientShell';
 
 export const metadata: Metadata = {
-  title: 'Aura Health | Virtual Care for Nigeria',
+  title: 'DOCAAS | Virtual Care Platform (Nigeria & UK)',
   description: 'Next-Generation Clinical & Virtual Health Platform connecting Nigerian patients with British and Nigerian specialists.',
 };
 
@@ -15,12 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased flex flex-col">
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <AuthProvider defaultPersona="patient">
-          {children}
+          <PatientShell>
+            {children}
+          </PatientShell>
           <PersonaSwitcher />
         </AuthProvider>
       </body>
     </html>
   );
 }
+

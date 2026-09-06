@@ -1,15 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Modern Healthcare Design Tokens ───────────────────────── */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --aura-teal:          #0d746f;
+  --aura-teal-hover:    #0a5f5b;
+  --aura-teal-light:    #f0fdf9;
+  --aura-teal-border:   rgba(13, 116, 111, 0.22);
+  --aura-emerald:       #10b981;
+  --aura-emerald-soft:  #ecfdf5;
+
+  --bg-page:            #f8fafc;
+  --bg-surface:         #ffffff;
+  --bg-subtle:          #f1f5f9;
+
+  --border-light:       #e2e8f0;
+  --border-subtle:      #edf2f7;
+
+  --text-main:          #0f172a;
+  --text-muted:         #64748b;
+  --text-soft:          #94a3b8;
+
+  --shadow-sm:          0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-card:        0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  --shadow-elevated:    0 12px 32px -4px rgba(15, 23, 42, 0.09), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  --shadow-teal:        0 8px 24px -4px rgba(13, 116, 111, 0.25);
+
+  --radius-sm:          8px;
+  --radius-md:          12px;
+  --radius-lg:          16px;
+  --radius-xl:          22px;
+  --radius-pill:        9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-page);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ─── Micro Animations ───────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(0.85); }
+}
+
+@keyframes audioWave {
+  0%, 100% { height: 6px; }
+  50%       { height: 22px; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.live-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--aura-emerald);
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+/* ─── Top Navigation ─────────────────────────────────────────── */
+.patient-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.patient-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #0d746f 0%, #0a5f5b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(13, 116, 111, 0.28);
+}
+
+/* ─── Hero Appointment Banner ────────────────────────────────── */
+.appointment-hero-card {
+  background: linear-gradient(135deg, #0d746f 0%, #084c49 100%);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  color: #ffffff;
+  box-shadow: var(--shadow-teal);
+  position: relative;
+  overflow: hidden;
+}
+
+.appointment-hero-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ─── Quick Actions ──────────────────────────────────────────── */
+.quick-action-tile {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-action-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--aura-teal-border);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── Clinician Cards ────────────────────────────────────────── */
+.clinician-profile-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clinician-profile-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--aura-teal-border);
+  box-shadow: var(--shadow-elevated);
+}
+
+.clinician-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Specialty Pills ────────────────────────────────────────── */
+.filter-pill {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-light);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--aura-teal);
+  color: var(--aura-teal);
+}
+
+.filter-pill.active {
+  background: var(--aura-teal);
+  border-color: var(--aura-teal);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(13, 116, 111, 0.25);
+}
+
+/* ─── Modal Overlay & Content ────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.25);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Audio Wave Bars (Diagnostic preview) ────────────────────── */
+.wave-bar {
+  width: 4px;
+  background: var(--aura-teal);
+  border-radius: 4px;
+  display: inline-block;
+  animation: audioWave 1.2s ease-in-out infinite;
+}
+
+/* ─── Layout Shell & Navigation ──────────────────────────────── */
+.shell-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.shell-sidebar {
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 30;
+}
+
+.shell-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--bg-page);
+}
+
+.nav-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.nav-link-item:hover {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+.nav-link-item.active {
+  background-color: #f0fdf9;
+  color: var(--aura-teal);
+  font-weight: 600;
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-status.success {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-status.warning {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.badge-status.danger {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.badge-status.neutral {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.badge-status.info {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+

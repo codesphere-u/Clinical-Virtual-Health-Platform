@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Aura Clinical Network — Persona Switcher Component
+ * DOCAAS Clinical Network — Persona Switcher Component
  * Floating control for stakeholder demos to switch between Patient, Clinician, and Admin views.
  */
 

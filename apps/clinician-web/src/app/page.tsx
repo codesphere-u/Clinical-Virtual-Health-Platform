@@ -1,407 +1,358 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   Video,
-  Mic,
-  MicOff,
-  VideoOff,
-  PhoneOff,
-  AlertCircle,
-  Sparkles,
-  Lock,
-  Keyboard,
+  Clock,
+  Users,
+  FileText,
+  CheckCircle2,
+  TrendingUp,
   ShieldCheck,
-  FileSignature,
-  User,
 } from 'lucide-react';
-import { Button, Badge } from '@aura/design-system';
 
-export default function ClinicianWorkstationPage() {
-  const [activeTab, setActiveTab] = useState<'soap' | 'rx' | 'investigations'>('soap');
-  const [micMuted, setMicMuted] = useState(false);
-  const [cameraOff, setCameraOff] = useState(false);
-  const [aiDraftLoading, setAiDraftLoading] = useState(false);
-  const [aiDraftGenerated, setAiDraftGenerated] = useState(false);
-  const [rxMedication, setRxMedication] = useState('Amlodipine 10mg');
-  const [rxAlert, setRxAlert] = useState<string | null>(null);
-  const [noteSigned, setNoteSigned] = useState(false);
+interface QueuePatient {
+  id: string;
+  name: string;
+  ageGender: string;
+  reason: string;
+  waitDuration: string;
+  urgency: 'urgent' | 'routine';
+  bp: string;
+  hr: string;
+  allergies: string[];
+}
 
-  // SOAP fields
-  const [history, setHistory] = useState(
-    'Patient has known stage 1 hypertension diagnosed 2 years ago. Regimen: Amlodipine 5mg once daily with moderate compliance. No chest pain, visual disturbances, or shortness of breath.'
+const UPCOMING_QUEUE: QueuePatient[] = [
+  {
+    id: 'p1',
+    name: 'Olumide Babalola',
+    ageGender: '42M',
+    reason: 'Hypertension Review & Medication Adjustment',
+    waitDuration: '4 min',
+    urgency: 'urgent',
+    bp: '142/90 mmHg',
+    hr: '76 bpm',
+    allergies: ['Penicillin (Anaphylaxis)'],
+  },
+  {
+    id: 'p2',
+    name: 'Amina Bello',
+    ageGender: '29F',
+    reason: 'Thyroid Panel & Levothyroxine Dose Check',
+    waitDuration: '8 min',
+    urgency: 'routine',
+    bp: '118/76 mmHg',
+    hr: '68 bpm',
+    allergies: ['None Documented'],
+  },
+  {
+    id: 'p3',
+    name: 'Chukwuma Obi',
+    ageGender: '55M',
+    reason: 'Post-ECG Arrhythmia Assessment',
+    waitDuration: '14 min',
+    urgency: 'routine',
+    bp: '135/85 mmHg',
+    hr: '82 bpm',
+    allergies: ['Sulfa drugs'],
+  },
+];
+
+export default function ClinicianDashboard() {
+  const [filterUrgency, setFilterUrgency] = useState<'all' | 'urgent' | 'routine'>('all');
+
+  const filteredQueue = UPCOMING_QUEUE.filter(
+    (p) => filterUrgency === 'all' || p.urgency === filterUrgency
   );
-  const [assessment, setAssessment] = useState('Suboptimally Controlled Essential Hypertension (ICD-10: I10)');
-  const [treatmentPlan, setTreatmentPlan] = useState(
-    '1. Up-titrate Amlodipine from 5mg to 10mg once daily.\n2. Advise dietary sodium restriction (<2g/day).\n3. Keep home BP log twice daily for 14 days and follow-up virtually.'
-  );
-
-  const handleTriggerAiScribe = () => {
-    setAiDraftLoading(true);
-    setTimeout(() => {
-      setAiDraftLoading(false);
-      setAiDraftGenerated(true);
-      setTreatmentPlan(
-        '1. Up-titrate Amlodipine to 10mg daily in the morning.\n2. Dietary sodium reduction & lifestyle counseling.\n3. Patient to monitor home blood pressure morning and evening.\n4. Virtual review in 14 days or earlier if BP > 170/100 mmHg.'
-      );
-    }, 900);
-  };
-
-  const handleTestRxAllergyCheck = (medName: string) => {
-    setRxMedication(medName);
-    if (medName.toLowerCase().includes('amoxicillin') || medName.toLowerCase().includes('penicillin') || medName.toLowerCase().includes('augmentin')) {
-      setRxAlert('CRITICAL ALLERGY BLOCK: Patient has documented life-threatening allergy to Penicillin!');
-    } else {
-      setRxAlert(null);
-    }
-  };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-slate-900 text-slate-100 select-none">
-      {/* Top Workstation Bar */}
-      <header className="h-14 bg-slate-900 border-b border-slate-800 px-5 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="h-8 px-2.5 rounded bg-[#0D746F] flex items-center justify-center font-bold text-white text-xs tracking-wider">
-            AURA CLINICAL
+    <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+      {/* ─── Hero Overview Header ─── */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
+        <div>
+          <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px 0', letterSpacing: '-0.02em' }}>
+            Clinician Duty Overview
+          </h1>
+          <p style={{ margin: 0, fontSize: '14px', color: 'var(--ws-muted)' }}>
+            Lagos & London Telemedicine Sessions • Dr. Elizabeth Adeyemi (GMC #7654321 • MDCN #48291)
+          </p>
+        </div>
+
+        <Link
+          href="/consultation"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '12px 22px',
+            background: 'linear-gradient(135deg, #0d746f 0%, #14b8a6 100%)',
+            color: '#ffffff',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 700,
+            textDecoration: 'none',
+            boxShadow: '0 4px 16px rgba(13, 116, 111, 0.4)',
+          }}
+        >
+          <Video size={17} />
+          <span>Launch Consultation Room</span>
+        </Link>
+      </div>
+
+      {/* ─── Key Clinical Metrics ─── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+        <div style={{ background: 'var(--ws-surface)', borderRadius: '12px', border: '1px solid var(--ws-border)', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ws-muted)' }}>Patients Scheduled Today</span>
+            <Users size={16} color="#2dd4bf" />
           </div>
-          <div className="flex items-center gap-2 pl-3 border-l border-slate-700">
-            <span className="font-semibold text-sm text-slate-200">Dr. Elizabeth Adeyemi</span>
-            <span className="text-xs text-slate-400">Consultant Cardiologist</span>
-            <Badge variant="verified" size="sm" dot>
-              GMC #7654321
-            </Badge>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+            <span style={{ fontSize: '28px', fontWeight: 800, color: '#f1f5f9' }}>6</span>
+            <span style={{ fontSize: '14px', color: 'var(--ws-muted)' }}>/ 10 completed</span>
+          </div>
+          <div style={{ marginTop: '8px', fontSize: '11px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <TrendingUp size={12} />
+            <span>On schedule (average 18m / consult)</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1 rounded bg-slate-800 border border-slate-700 text-xs text-slate-300">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span>Encrypted Room: <strong>cvh-room-001</strong></span>
+        <div style={{ background: 'var(--ws-surface)', borderRadius: '12px', border: '1px solid var(--ws-border)', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ws-muted)' }}>Pending SOAP Sign-offs</span>
+            <FileText size={16} color="#38bdf8" />
           </div>
-
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <Keyboard className="h-4 w-4" />
-            <span>Shortcuts: <strong>Alt+S</strong> (Sign) • <strong>Ctrl+K</strong> (Search)</span>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+            <span style={{ fontSize: '28px', fontWeight: 800, color: '#f1f5f9' }}>1</span>
+            <span style={{ fontSize: '12px', color: '#f59e0b' }}>Awaiting lock & seal</span>
+          </div>
+          <div style={{ marginTop: '8px', fontSize: '11px', color: 'var(--ws-muted)' }}>
+            Babatunde Adeleke (13:30 WAT)
           </div>
         </div>
-      </header>
 
-      {/* Main 3-Column Split View */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Left Column: Patient Snapshot & Records (Width: 320px) */}
-        <aside className="w-80 bg-white text-slate-900 border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto">
-          <div className="p-4 border-b border-slate-200 bg-slate-50">
-            <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-[#0D746F]/10 border border-[#0D746F]/20 flex items-center justify-center text-[#0D746F] font-bold text-base">
-                OB
-              </div>
-              <div>
-                <h2 className="font-bold text-slate-900 text-base leading-tight">Olumide Babalola</h2>
-                <p className="text-xs font-mono text-slate-500">MRN: CVH-2026-0001</p>
-                <p className="text-[11px] text-slate-600 font-medium">44y (1982-04-12) • Male</p>
-              </div>
-            </div>
+        <div style={{ background: 'var(--ws-surface)', borderRadius: '12px', border: '1px solid var(--ws-border)', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ws-muted)' }}>E-Prescriptions Authorized</span>
+            <CheckCircle2 size={16} color="#10b981" />
           </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+            <span style={{ fontSize: '28px', fontWeight: 800, color: '#f1f5f9' }}>8</span>
+            <span style={{ fontSize: '12px', color: 'var(--ws-muted)' }}>cross-border orders</span>
+          </div>
+          <div style={{ marginTop: '8px', fontSize: '11px', color: 'var(--ws-muted)' }}>
+            All verified against patient allergy profiles
+          </div>
+        </div>
 
-          <div className="p-4 space-y-4 flex-1">
-            {/* Severe Allergy Warning */}
-            <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs space-y-1">
-              <div className="flex items-center gap-1.5 font-bold">
-                <AlertCircle className="h-4 w-4 text-rose-600 shrink-0" />
-                <span>ALLERGIES RECORDED</span>
-              </div>
-              <p className="font-semibold">• Penicillin (Anaphylaxis / Life-Threatening)</p>
-            </div>
+        <div style={{ background: 'var(--ws-surface)', borderRadius: '12px', border: '1px solid var(--ws-border)', padding: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ws-muted)' }}>Telehealth Gateway</span>
+            <ShieldCheck size={16} color="#2dd4bf" />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+            <span style={{ fontSize: '24px', fontWeight: 800, color: '#10b981' }}>18 ms</span>
+            <span style={{ fontSize: '12px', color: 'var(--ws-muted)' }}>Latency (Lagos SFU)</span>
+          </div>
+          <div style={{ marginTop: '8px', fontSize: '11px', color: '#2dd4bf' }}>
+            DTLS-SRTP 256-bit encryption verified
+          </div>
+        </div>
+      </div>
 
-            {/* Baseline Vitals Box */}
-            <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs space-y-1.5">
-              <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">
-                Encounter Vitals
+      {/* ─── Active Spotlight: Next Patient in Waiting Room ─── */}
+      {UPCOMING_QUEUE.length > 0 && UPCOMING_QUEUE[0] && (
+        <div
+          style={{
+            background: 'linear-gradient(135deg, rgba(13, 116, 111, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%)',
+            borderRadius: '16px',
+            border: '1px solid rgba(13, 116, 111, 0.45)',
+            padding: '24px 28px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '20px',
+          }}
+        >
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+              <span className="pulse-dot" style={{ background: '#ef4444' }} />
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                Immediate Patient Waiting in Queue
               </span>
-              <div className="grid grid-cols-2 gap-2 text-slate-800">
-                <div>BP: <strong className="text-rose-700">142/90 mmHg</strong></div>
-                <div>Pulse: <strong>76 bpm</strong></div>
-                <div>SpO2: <strong>98%</strong></div>
-                <div>Temp: <strong>36.6°C</strong></div>
-                <div>Blood: <strong>O+</strong></div>
-                <div>Geno: <strong>AA</strong></div>
-              </div>
             </div>
-
-            {/* Past Medical History */}
-            <div className="space-y-1 text-xs">
-              <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">
-                Chronic Conditions
-              </span>
-              <p className="text-slate-600">• Essential Hypertension (Dx 2024)</p>
-            </div>
-
-            {/* Active Medications */}
-            <div className="space-y-1 text-xs">
-              <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">
-                Current Regimen
-              </span>
-              <p className="text-slate-600">• Amlodipine 5mg oral daily</p>
-            </div>
-
-            {/* Data Residency Attestation */}
-            <div className="p-2.5 rounded bg-teal-50/50 border border-teal-100 text-[11px] text-[#0D746F] space-y-0.5">
-              <div className="flex items-center gap-1 font-semibold">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                <span>Cross-Border Direct Care</span>
-              </div>
-              <p className="text-slate-500">Nigeria Primary Sovereign Vault (Lagos). Transfer token: <strong>TRF-9821</strong></p>
-            </div>
-          </div>
-        </aside>
-
-        {/* Center Column: Telemedicine Cinema Viewport */}
-        <main className="flex-1 bg-slate-950 flex flex-col relative overflow-hidden">
-          {/* Top Video Header */}
-          <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-            <div className="bg-black/60 backdrop-blur px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-semibold text-white">
-              <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
-              <span>LIVE CONSULTATION • 14:28</span>
-            </div>
-            <div className="bg-black/60 backdrop-blur px-3 py-1.5 rounded-full text-xs font-medium text-emerald-400 flex items-center gap-1">
-              <Lock className="h-3 w-3" />
-              <span>E2EE • LiveKit SFU (0% loss)</span>
+            <h2 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff', margin: '0 0 4px 0' }}>
+              {UPCOMING_QUEUE[0].name} ({UPCOMING_QUEUE[0].ageGender})
+            </h2>
+            <p style={{ margin: '0 0 10px 0', fontSize: '14px', color: 'var(--ws-muted)' }}>
+              Reason: <strong>{UPCOMING_QUEUE[0].reason}</strong> • Waiting: <strong style={{ color: '#fca5a5' }}>{UPCOMING_QUEUE[0].waitDuration}</strong>
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '12px' }}>
+              <span style={{ color: '#fca5a5' }}>BP: <strong>{UPCOMING_QUEUE[0].bp} (Elevated)</strong></span>
+              <span style={{ color: 'var(--ws-dim)' }}>•</span>
+              <span style={{ color: '#34d399' }}>HR: <strong>{UPCOMING_QUEUE[0].hr}</strong></span>
+              <span style={{ color: 'var(--ws-dim)' }}>•</span>
+              <span style={{ color: '#fca5a5' }}>Allergy: <strong>{UPCOMING_QUEUE[0].allergies[0] || 'None'}</strong></span>
             </div>
           </div>
 
-          {/* Main Video Surface */}
-          <div className="flex-1 flex items-center justify-center relative p-6">
-            <div className="w-full h-full max-w-4xl max-h-[580px] bg-slate-900 rounded-2xl border border-slate-800 flex flex-col items-center justify-center text-center p-8 relative shadow-2xl overflow-hidden">
-              <div className="h-24 w-24 rounded-full bg-slate-800 border-2 border-[#0D746F] flex items-center justify-center text-slate-400 mb-4">
-                <User className="h-12 w-12 text-slate-400" />
-              </div>
-              <h3 className="font-bold text-lg text-white">Olumide Babalola</h3>
-              <p className="text-xs text-slate-400 mt-1">Connecting from Lagos, Nigeria (1080p WebRTC)</p>
+          <Link
+            href="/consultation"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '12px 24px',
+              background: 'var(--aura-teal)',
+              color: '#ffffff',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 4px 14px rgba(13, 116, 111, 0.5)',
+            }}
+          >
+            <Video size={16} />
+            <span>Admit to Consultation Room</span>
+          </Link>
+        </div>
+      )}
 
-              {/* Self View Floating Thumbnail */}
-              <div className="absolute bottom-5 right-5 w-44 h-32 bg-slate-800 border-2 border-slate-700 rounded-xl overflow-hidden shadow-lg flex flex-col items-center justify-center">
-                <span className="text-[10px] font-bold text-slate-400 uppercase">Dr. Elizabeth (Self)</span>
-                <span className="text-[10px] text-emerald-400">London, UK</span>
-              </div>
-            </div>
+      {/* ─── Virtual Patient Triage Queue Table ─── */}
+      <div style={{ background: 'var(--ws-surface)', borderRadius: '16px', border: '1px solid var(--ws-border)', padding: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', margin: '0 0 4px 0' }}>
+              Virtual Waiting Queue ({filteredQueue.length})
+            </h3>
+            <p style={{ margin: 0, fontSize: '13px', color: 'var(--ws-muted)' }}>
+              Real-time patient check-ins across Nigerian and UK telemedicine corridors.
+            </p>
           </div>
 
-          {/* Bottom Call Controls */}
-          <div className="h-20 bg-slate-900/90 backdrop-blur border-t border-slate-800 px-6 flex items-center justify-center gap-4 shrink-0">
+          <div style={{ display: 'flex', gap: '8px' }}>
             <button
-              onClick={() => setMicMuted(!micMuted)}
-              className={`p-3.5 rounded-full transition ${
-                micMuted ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-200 hover:bg-slate-700'
-              }`}
+              onClick={() => setFilterUrgency('all')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                fontSize: '12px',
+                fontWeight: 600,
+                border: '1px solid var(--ws-border)',
+                background: filterUrgency === 'all' ? 'rgba(13, 116, 111, 0.3)' : 'transparent',
+                color: filterUrgency === 'all' ? '#2dd4bf' : 'var(--ws-muted)',
+                cursor: 'pointer',
+              }}
             >
-              {micMuted ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+              All
             </button>
-
             <button
-              onClick={() => setCameraOff(!cameraOff)}
-              className={`p-3.5 rounded-full transition ${
-                cameraOff ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-200 hover:bg-slate-700'
-              }`}
+              onClick={() => setFilterUrgency('urgent')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                fontSize: '12px',
+                fontWeight: 600,
+                border: '1px solid var(--ws-border)',
+                background: filterUrgency === 'urgent' ? 'rgba(239, 68, 68, 0.25)' : 'transparent',
+                color: filterUrgency === 'urgent' ? '#fca5a5' : 'var(--ws-muted)',
+                cursor: 'pointer',
+              }}
             >
-              {cameraOff ? <VideoOff className="h-5 w-5" /> : <Video className="h-5 w-5" />}
+              Urgent Priority
             </button>
-
-            <button className="px-6 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs flex items-center gap-2 transition shadow-lg active:scale-95">
-              <PhoneOff className="h-4 w-4" />
-              <span>Conclude Consultation</span>
+            <button
+              onClick={() => setFilterUrgency('routine')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                fontSize: '12px',
+                fontWeight: 600,
+                border: '1px solid var(--ws-border)',
+                background: filterUrgency === 'routine' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+                color: filterUrgency === 'routine' ? '#7dd3fc' : 'var(--ws-muted)',
+                cursor: 'pointer',
+              }}
+            >
+              Routine
             </button>
           </div>
-        </main>
+        </div>
 
-        {/* Right Column: Tabbed Documentation Workspace (Width: 460px) */}
-        <aside className="w-[460px] bg-white text-slate-900 border-l border-slate-200 flex flex-col shrink-0">
-          {/* Workspace Tabs Header */}
-          <div className="h-12 border-b border-slate-200 px-4 flex items-center justify-between bg-slate-50 shrink-0">
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setActiveTab('soap')}
-                className={`text-xs px-3 py-1.5 rounded-md font-semibold transition ${
-                  activeTab === 'soap' ? 'bg-white text-[#0D746F] shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                SOAP Encounter
-              </button>
-              <button
-                onClick={() => setActiveTab('rx')}
-                className={`text-xs px-3 py-1.5 rounded-md font-semibold transition ${
-                  activeTab === 'rx' ? 'bg-white text-[#0D746F] shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                E-Prescription
-              </button>
-              <button
-                onClick={() => setActiveTab('investigations')}
-                className={`text-xs px-3 py-1.5 rounded-md font-semibold transition ${
-                  activeTab === 'investigations' ? 'bg-white text-[#0D746F] shadow-sm' : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Orders & Labs
-              </button>
-            </div>
-
-            {/* AI Assistant Button */}
-            <button
-              onClick={handleTriggerAiScribe}
-              disabled={aiDraftLoading}
-              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-teal-600 to-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm hover:opacity-95 transition"
-            >
-              <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-              <span>{aiDraftLoading ? 'Synthesizing...' : 'AI Assist Scribe'}</span>
-            </button>
-          </div>
-
-          {/* Tab Content Area */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4">
-            {activeTab === 'soap' && (
-              <div className="space-y-3.5 text-xs">
-                {aiDraftGenerated && (
-                  <div className="p-2.5 rounded-lg bg-teal-50 border border-teal-200 text-[#0D746F] flex items-center justify-between">
-                    <span className="font-semibold text-[11px]">
-                      [AI Scribe Draft Applied - Human Approval Required]
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--ws-border)', color: 'var(--ws-muted)', fontSize: '11px', textTransform: 'uppercase' }}>
+                <th style={{ padding: '10px 14px' }}>Patient Name</th>
+                <th style={{ padding: '10px 14px' }}>Clinical Reason</th>
+                <th style={{ padding: '10px 14px' }}>Wait Duration</th>
+                <th style={{ padding: '10px 14px' }}>Triage Urgency</th>
+                <th style={{ padding: '10px 14px' }}>Telemetry Baseline</th>
+                <th style={{ padding: '10px 14px', textAlign: 'right' }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredQueue.map((p) => (
+                <tr key={p.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                  <td style={{ padding: '14px', fontWeight: 700, color: '#f1f5f9' }}>
+                    <div>{p.name}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--ws-muted)' }}>{p.ageGender}</div>
+                  </td>
+                  <td style={{ padding: '14px', color: 'var(--ws-muted)', maxWidth: '280px' }}>
+                    {p.reason}
+                  </td>
+                  <td style={{ padding: '14px', color: 'var(--ws-muted)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Clock size={13} />
+                      <span>{p.waitDuration}</span>
+                    </div>
+                  </td>
+                  <td style={{ padding: '14px' }}>
+                    <span
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        padding: '3px 8px',
+                        borderRadius: '4px',
+                        textTransform: 'uppercase',
+                        background: p.urgency === 'urgent' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(56, 189, 248, 0.15)',
+                        color: p.urgency === 'urgent' ? '#fca5a5' : '#7dd3fc',
+                      }}
+                    >
+                      {p.urgency}
                     </span>
-                    <span className="text-[10px] text-slate-500">Gemini Clinical v2</span>
-                  </div>
-                )}
-
-                {/* History & Presenting Complaint */}
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">
-                    Presenting Complaint & History
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={history}
-                    onChange={(e) => setHistory(e.target.value)}
-                    className="w-full p-2.5 rounded-lg border border-slate-300 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0D746F]"
-                  />
-                </div>
-
-                {/* Assessment & Diagnosis */}
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">
-                    Assessment & Primary Diagnosis (ICD-10)
-                  </label>
-                  <input
-                    type="text"
-                    value={assessment}
-                    onChange={(e) => setAssessment(e.target.value)}
-                    className="w-full p-2.5 rounded-lg border border-slate-300 text-xs font-medium text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0D746F]"
-                  />
-                </div>
-
-                {/* Treatment Plan */}
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">
-                    Intervention & Treatment Plan
-                  </label>
-                  <textarea
-                    rows={4}
-                    value={treatmentPlan}
-                    onChange={(e) => setTreatmentPlan(e.target.value)}
-                    className="w-full p-2.5 rounded-lg border border-slate-300 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#0D746F]"
-                  />
-                </div>
-
-                {/* Safety-Netting Advice */}
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">
-                    Safety-Netting & Red-Flag Warnings
-                  </label>
-                  <p className="text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200">
-                    Advised to present to nearest emergency department (or dial 112) if experiencing sudden severe chest tightness, unilateral limb weakness, visual loss, or acute dyspnea.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'rx' && (
-              <div className="space-y-4 text-xs">
-                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                  <span className="font-bold text-slate-800 block mb-2">New Prescription Item</span>
-                  <div className="space-y-2">
-                    <div>
-                      <label className="text-slate-600 block mb-0.5">Select Formulary Drug:</label>
-                      <select
-                        value={rxMedication}
-                        onChange={(e) => handleTestRxAllergyCheck(e.target.value)}
-                        className="w-full p-2 rounded border border-slate-300 bg-white"
-                      >
-                        <option value="Amlodipine 10mg">Amlodipine 10mg (Calcium Channel Blocker)</option>
-                        <option value="Lisinopril 10mg">Lisinopril 10mg (ACE Inhibitor)</option>
-                        <option value="Amoxicillin 500mg">Amoxicillin 500mg (Penicillin Class - ALLERGY TEST)</option>
-                        <option value="Metformin 500mg">Metformin 500mg (Biguanide)</option>
-                      </select>
-                    </div>
-
-                    {rxAlert && (
-                      <div className="p-2.5 rounded bg-rose-50 border border-rose-300 text-rose-800 font-bold flex items-center gap-2">
-                        <AlertCircle className="h-4 w-4 text-rose-600 shrink-0" />
-                        <span>{rxAlert}</span>
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-2 gap-2">
-                      <div>
-                        <label className="text-slate-600 block mb-0.5">Dosage / Freq:</label>
-                        <input type="text" defaultValue="1 tab daily" className="w-full p-1.5 rounded border border-slate-300" />
-                      </div>
-                      <div>
-                        <label className="text-slate-600 block mb-0.5">Duration:</label>
-                        <input type="text" defaultValue="30 days (Qty 30)" className="w-full p-1.5 rounded border border-slate-300" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-teal-50 rounded-lg border border-teal-200 text-[#0D746F] text-[11px] space-y-1">
-                  <div className="flex items-center gap-1 font-bold">
-                    <ShieldCheck className="h-3.5 w-3.5" />
-                    <span>Cross-Jurisdiction Prescription Attestation</span>
-                  </div>
-                  <p>Authorized under GMC Good Medical Practice Standards for remote prescribing and Nigerian registered pharmacy dispensing.</p>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'investigations' && (
-              <div className="space-y-3 text-xs">
-                <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 space-y-2">
-                  <span className="font-bold text-slate-800 block">Diagnostic Investigations Ordered</span>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between p-2 rounded bg-white border border-slate-200">
-                      <div>
-                        <p className="font-semibold text-slate-800">Lipid Profile & Serum Creatinine</p>
-                        <p className="text-[11px] text-slate-500">Ordered today • Routine priority</p>
-                      </div>
-                      <Badge variant="info" size="sm">Pending Lab</Badge>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom Action: Sign & Lock Record */}
-          <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between shrink-0">
-            <div>
-              <p className="text-[11px] text-slate-500 font-mono">Status: {noteSigned ? 'LOCKED & SIGNED' : 'UNSAVED DRAFT'}</p>
-            </div>
-            <Button
-              size="md"
-              variant={noteSigned ? 'secondary' : 'primary'}
-              disabled={noteSigned}
-              onClick={() => setNoteSigned(true)}
-              leftIcon={<FileSignature className="h-4 w-4" />}
-            >
-              {noteSigned ? 'Record Signed (SHA-256)' : 'Sign Note & E-Prescription'}
-            </Button>
-          </div>
-        </aside>
+                  </td>
+                  <td style={{ padding: '14px', fontSize: '12px' }}>
+                    <div>BP: <strong style={{ color: p.urgency === 'urgent' ? '#fca5a5' : '#f1f5f9' }}>{p.bp}</strong></div>
+                    <div style={{ color: 'var(--ws-dim)' }}>HR: {p.hr}</div>
+                  </td>
+                  <td style={{ padding: '14px', textAlign: 'right' }}>
+                    <Link
+                      href="/consultation"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '6px 12px',
+                        background: 'var(--aura-teal)',
+                        color: '#ffffff',
+                        borderRadius: '6px',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <Video size={13} />
+                      <span>Admit</span>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

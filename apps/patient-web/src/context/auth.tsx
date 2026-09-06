@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Aura Clinical Network — Auth Context Provider
+ * DOCAAS Clinical Network — Auth Context Provider
  * Manages JWT sessions, persona switcher, and MFA state across web applications.
  */
 
@@ -32,7 +32,7 @@ interface AuthContextState {
 const DEMO_USERS: Record<DemoPersona, AuthUser> = {
   patient: {
     userId: 'demo-patient-001',
-    email: 'olumide.babalola@demo.aura',
+    email: 'olumide.babalola@demo.docaas',
     role: 'patient',
     jurisdiction: 'NG',
     name: 'Olumide Babalola',
@@ -40,7 +40,7 @@ const DEMO_USERS: Record<DemoPersona, AuthUser> = {
   },
   clinician: {
     userId: 'demo-clinician-001',
-    email: 'dr.elizabeth.adeyemi@demo.aura',
+    email: 'dr.elizabeth.adeyemi@demo.docaas',
     role: 'clinician',
     jurisdiction: 'GB',
     name: 'Dr. Elizabeth Adeyemi',
@@ -49,11 +49,11 @@ const DEMO_USERS: Record<DemoPersona, AuthUser> = {
   },
   admin: {
     userId: 'demo-admin-001',
-    email: 'admin@demo.aura',
+    email: 'admin@demo.docaas',
     role: 'admin',
     jurisdiction: 'GB',
-    name: 'Aura Compliance Admin',
-    avatarInitials: 'AC',
+    name: 'DOCAAS Compliance Admin',
+    avatarInitials: 'DA',
     mfaEnabled: true,
   },
 };

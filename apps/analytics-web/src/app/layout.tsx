@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AnalyticsShell } from '../components/AnalyticsShell';
 
 export const metadata: Metadata = {
-  title: 'Aura Clinical Analytics | Executive Dashboard',
+  title: 'DOCAAS Clinical Analytics | Executive Dashboard',
   description:
-    'Real-time clinical KPI reporting, regulatory compliance metrics, and audit integrity dashboards for the Aura Clinical Health Alliance. Covering Nigeria (NDPA 2023) and United Kingdom (UK GDPR) jurisdictions.',
-  robots: { index: false, follow: false }, // Internal tool — do not index
+    'Real-time clinical KPI reporting, regulatory compliance metrics, and audit integrity dashboards for the DOCAAS Telemedicine Alliance. Covering Nigeria (NDPA 2023) and United Kingdom (UK GDPR) jurisdictions.',
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -15,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AnalyticsShell>{children}</AnalyticsShell>
+      </body>
     </html>
   );
 }

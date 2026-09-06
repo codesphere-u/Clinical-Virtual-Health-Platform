@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { AuthProvider } from '../context/auth';
-import { PersonaSwitcher } from '../components/PersonaSwitcher';
+import { AdminShell } from '../components/AdminShell';
 
 export const metadata: Metadata = {
-  title: 'Aura Command Center | Administrative & Compliance Headquarters',
-  description: 'Enterprise administrative oversight, clinician verification, waiting room telemetry, and tamper-evident audit inspection.',
+  title: 'DOCAAS Command Centre | Administrative & Compliance Headquarters',
+  description:
+    'Enterprise administrative oversight, clinician verification, waiting room telemetry, and tamper-evident audit inspection for the DOCAAS Virtual Health Platform.',
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -15,11 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased flex flex-col">
-        <AuthProvider defaultPersona="admin">
-          {children}
-          <PersonaSwitcher />
-        </AuthProvider>
+      <body>
+        <AdminShell>{children}</AdminShell>
       </body>
     </html>
   );

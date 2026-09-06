@@ -153,13 +153,16 @@ export function checkAllergyConflict(
       };
     }
 
-    // 2. Class equivalence check
-    const matchedClass = Object.keys(DRUG_ALLERGY_EQUIVALENCE_MAP).find(
-      (cls) => allergen.includes(cls) || cls.includes(allergen)
+    // 2. Class equivalence check (matched by class key or class member)
+    const matchedClassEntry = Object.entries(DRUG_ALLERGY_EQUIVALENCE_MAP).find(
+      ([cls, members]) =>
+        allergen.includes(cls) ||
+        cls.includes(allergen) ||
+        members.some((m) => allergen.includes(m))
     );
 
-    if (matchedClass) {
-      const classMembers = DRUG_ALLERGY_EQUIVALENCE_MAP[matchedClass] ?? [];
+    if (matchedClassEntry) {
+      const [matchedClass, classMembers] = matchedClassEntry;
       if (classMembers.some((member) => target.includes(member))) {
         return {
           hasConflict: true,

@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-  aura_network:
+  docaas_network:
     driver: bridge
-    name: aura_clinical_network
+    name: docaas_clinical_network
 
 services:
   # ── Infrastructure Services ────────────────────────────────────────────────
@@ -11,20 +11,20 @@ services:
   # PostgreSQL 16 Relational Database + pgvector
   postgres:
     image: pgvector/pgvector:pg16
-    container_name: aura_postgres
+    container_name: docaas_postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-clinical_platform}
-      POSTGRES_USER: ${POSTGRES_USER:-aura_admin}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aura_secure_password_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-docaas_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-docaas_secure_password_dev}
     ports:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - aura_network
+      - docaas_network
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-aura_admin} -d ${POSTGRES_DB:-clinical_platform}']
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-docaas_admin} -d ${POSTGRES_DB:-clinical_platform}']
       interval: 5s
       timeout: 5s
       retries: 10
@@ -32,14 +32,14 @@ services:
   # Redis 7 — Rate Limiting, Caching & Realtime PubSub
   redis:
     image: redis:7.2-alpine
-    container_name: aura_redis
+    container_name: docaas_redis
     restart: unless-stopped
     ports:
       - '6379:6379'
     volumes:
       - redis_data:/data
     networks:
-      - aura_network
+      - docaas_network
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
       interval: 5s
