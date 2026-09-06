@@ -1,5 +1,5 @@
 /**
- * @aura/database - Database Client & Type Exports
+ * @docaas/database - Database Client & Type Exports
  * Next-Generation Clinical & Virtual Health Platform
  */
 

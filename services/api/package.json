@@ -1,5 +1,5 @@
 {
-  "name": "@aura/api-service",
+  "name": "@docaas/api-service",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/server.js",
@@ -10,12 +10,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aura/auth": "workspace:*",
-    "@aura/database": "workspace:*",
-    "@aura/domain": "workspace:*",
-    "@aura/models": "workspace:*",
-    "@aura/validation": "workspace:*",
-    "@aura/video": "workspace:*",
+    "@docaas/auth": "workspace:*",
+    "@docaas/database": "workspace:*",
+    "@docaas/domain": "workspace:*",
+    "@docaas/models": "workspace:*",
+    "@docaas/validation": "workspace:*",
+    "@docaas/video": "workspace:*",
     "@fastify/cors": "^10.0.2",
     "@fastify/helmet": "^13.0.1",
     "@fastify/rate-limit": "^10.2.2",

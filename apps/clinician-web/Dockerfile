@@ -19,8 +19,8 @@ COPY tsconfig.base.json ./
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm --filter @aura/design-system build || true
-RUN pnpm --filter @aura/clinician-web build
+RUN pnpm --filter @docaas/design-system build || true
+RUN pnpm --filter @docaas/clinician-web build
 
 # ─── Stage 3: Runner ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -30,13 +30,13 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3002
 
-RUN addgroup -S aura && adduser -S aura -G aura
+RUN addgroup -S docaas && adduser -S docaas -G docaas
 
 COPY --from=builder /repo/apps/clinician-web/.next/standalone ./
 COPY --from=builder /repo/apps/clinician-web/.next/static ./.next/static
 COPY --from=builder /repo/apps/clinician-web/public ./public
 
-USER aura
+USER docaas
 
 EXPOSE 3002
 

@@ -16,4 +16,4 @@
 | [ADR-012](ADR-012-observability.md) | Observability, Structured Logging & Health | Accepted | Pino structured logging, zero PHI leaks, health probes (`/health/ready`) |
 | [ADR-013](ADR-013-api-versioning-idempotency.md) | API Versioning, Idempotency & Contracts | Accepted | Contract-first Zod schemas, `/api/v1` prefix, `X-Idempotency-Key` via Redis |
 | [ADR-014](ADR-014-flutter-architecture.md) | Modular Shared Flutter Architecture | Accepted | Decoupled `/flutter/packages` consumed by patient, clinician, and desktop apps |
-| [ADR-015](ADR-015-web-architecture-design-system.md) | Web Architecture & Aura Clinical Design System | Accepted | Next.js 15 App Router, WCAG 2.2 AA/AAA, calm uncluttered modern aesthetic |
+| [ADR-015](ADR-015-web-architecture-design-system.md) | Web Architecture & DOCAAS Clinical Design System | Accepted | Next.js 15 App Router, WCAG 2.2 AA/AAA, calm uncluttered modern aesthetic |

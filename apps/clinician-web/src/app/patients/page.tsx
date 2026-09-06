@@ -246,7 +246,7 @@ export default function PatientsRosterPage() {
                   alignItems: 'center',
                   gap: '6px',
                   padding: '8px 14px',
-                  background: 'var(--aura-teal)',
+                  background: 'var(--docaas-teal)',
                   color: '#ffffff',
                   borderRadius: '6px',
                   fontSize: '12px',

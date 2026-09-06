@@ -1,5 +1,5 @@
 {
-  "name": "@aura/validation",
+  "name": "@docaas/validation",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aura/domain": "workspace:*",
-    "@aura/models": "workspace:*"
+    "@docaas/domain": "workspace:*",
+    "@docaas/models": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.3"

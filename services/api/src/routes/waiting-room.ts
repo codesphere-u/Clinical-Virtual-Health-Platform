@@ -1,12 +1,12 @@
 /**
- * @aura/api-service - Realtime Waiting Room & Heartbeat Engine
+ * @docaas/api-service - Realtime Waiting Room & Heartbeat Engine
  * Conforms to ADR-009: Realtime Waiting Room State Machine & Heartbeats
  */
 
 import { FastifyPluginAsync } from 'fastify';
-import { WaitingRoomHeartbeatSchema } from '@aura/models';
-import { AppointmentStatus, UserRole, Jurisdiction } from '@aura/domain';
-import { LiveKitVideoProvider, VideoService } from '@aura/video';
+import { WaitingRoomHeartbeatSchema } from '@docaas/models';
+import { AppointmentStatus, UserRole, Jurisdiction } from '@docaas/domain';
+import { LiveKitVideoProvider, VideoService } from '@docaas/video';
 import { appointmentsDb } from './appointments.js';
 import { auditVault } from '../services/audit-vault.js';
 

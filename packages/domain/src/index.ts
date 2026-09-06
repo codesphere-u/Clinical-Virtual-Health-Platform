@@ -1,5 +1,5 @@
 /**
- * @aura/domain - Core Domain Models, Enums, and State Machines
+ * @docaas/domain - Core Domain Models, Enums, and State Machines
  * Next-Generation Clinical & Virtual Health Platform
  */
 

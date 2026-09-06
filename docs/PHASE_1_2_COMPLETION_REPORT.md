@@ -19,7 +19,7 @@
 | **Requirements Engineering** | Functional specifications, regulatory guardrails, compliance rules | `docs/architecture/adr/`, `packages/validation/` | ✅ **Completed** (15 ADRs accepted) |
 | **Technical Architecture** | Monorepo topology, microservice architecture, API contracts | `README.md`, `turbo.json`, `services/api/` | ✅ **Completed** (Fastify + Next.js 15) |
 | **Database Architecture** | Dual-jurisdiction relational schema, migrations, seed data | `packages/database/prisma/schema.prisma` | ✅ **Completed** (25+ models, PostgreSQL 16) |
-| **Visual Architecture** | Aura Clinical Design System, tokens, palette, WCAG standards | `packages/design-system/`, `flutter/packages/design_system/` | ✅ **Completed** (Web & Flutter tokens) |
+| **Visual Architecture** | DOCAAS Clinical Design System, tokens, palette, WCAG standards | `packages/design-system/`, `flutter/packages/design_system/` | ✅ **Completed** (Web & Flutter tokens) |
 | **Patient UX Modeling** | Booking wizard, EHR records, e-prescriptions, consent settings | `apps/patient-web/src/app/` | ✅ **Completed** (6 modular routes + shell) |
 | **Clinician UX Modeling** | 3-pane console, WebRTC stage, SOAP editor, schedule, history | `apps/clinician-web/src/app/` | ✅ **Completed** (5 modular routes + shell) |
 | **Admin UX Modeling** | Credentialing queue, user RBAC, audit vault, compliance | `apps/admin-web/src/app/` | ✅ **Completed** (6 modular routes + shell) |
@@ -46,23 +46,23 @@ All foundational engineering boundaries are codified in 15 formal ADRs:
 12. **ADR-012**: Observability, Structured Logging & Health (Pino structured logging, zero PHI leaks)
 13. **ADR-013**: API Versioning, Idempotency & Contracts (Contract-first Zod schemas, Redis idempotency)
 14. **ADR-014**: Modular Shared Flutter Architecture (Decoupled packages for mobile & desktop)
-15. **ADR-015**: Web Architecture & Aura Clinical Design System (Next.js 15 App Router, WCAG 2.2 AA/AAA)
+15. **ADR-015**: Web Architecture & DOCAAS Clinical Design System (Next.js 15 App Router, WCAG 2.2 AA/AAA)
 
 ---
 
-## 3. Visual Architecture: Aura Clinical Design System
+## 3. Visual Architecture: DOCAAS Clinical Design System
 
-The **Aura Clinical Design System** was engineered to eliminate cognitive fatigue and provide modern, uncluttered interfaces tailored for clinical precision:
+The **DOCAAS Clinical Design System** was engineered to eliminate cognitive fatigue and provide modern, uncluttered interfaces tailored for clinical precision:
 
 - **Calibrated Color Tokens**:
-  - `aura-teal` (`#0D746F`): Primary interactive brand anchor symbolizing clinical trust.
-  - `aura-slate` (`#0F172A`, `#F8FAFC`): Soothing neutral surfaces with high-contrast text.
-  - `aura-emerald` (`#059669`): Verified credentials and compliance badges.
-  - `aura-rose` (`#E11D48`): High-priority clinical alerts and drug contraindications (paired with iconography).
-  - `aura-amber` (`#D97706`): Safeguarding warnings and expiring licenses.
+  - `docaas-teal` (`#0D746F`): Primary interactive brand anchor symbolizing clinical trust.
+  - `docaas-slate` (`#0F172A`, `#F8FAFC`): Soothing neutral surfaces with high-contrast text.
+  - `docaas-emerald` (`#059669`): Verified credentials and compliance badges.
+  - `docaas-rose` (`#E11D48`): High-priority clinical alerts and drug contraindications (paired with iconography).
+  - `docaas-amber` (`#D97706`): Safeguarding warnings and expiring licenses.
 - **Cross-Platform Portability**:
   - Available as React components in `packages/design-system/src/components/`.
-  - Available natively in Flutter in `flutter/packages/design_system/lib/aura_design_system.dart`.
+  - Available natively in Flutter in `flutter/packages/design_system/lib/docaas_design_system.dart`.
   - Configured across Tailwind stylesheets in all Next.js applications.
 
 ---

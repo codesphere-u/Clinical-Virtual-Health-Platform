@@ -1,10 +1,10 @@
 /**
- * @aura/api-service - Cross-Border Dual-Jurisdiction Policy Routes
+ * @docaas/api-service - Cross-Border Dual-Jurisdiction Policy Routes
  * Conforms to ADR-006: Nigeria NDPA 2023 & UK GDPR Dual-Jurisdiction Enforcement
  */
 
 import { FastifyPluginAsync } from 'fastify';
-import { Jurisdiction } from '@aura/domain';
+import { Jurisdiction } from '@docaas/domain';
 import { dataResidencyEngine, DataTransferRequest } from '../services/data-residency.js';
 import { auditVault } from '../services/audit-vault.js';
 

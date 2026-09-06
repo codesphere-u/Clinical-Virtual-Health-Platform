@@ -21,7 +21,7 @@ flutter/
 │   └── desktop/            # Desktop workstation (Multi-window, shortcuts, high density)
 └── packages/
     ├── core/               # Shared primitives, base bloc/notifier, logger, errors
-    ├── design_system/      # Aura Clinical Flutter widgets, typography, colors, assets
+    ├── design_system/      # DOCAAS Clinical Flutter widgets, typography, colors, assets
     ├── auth/               # Biometrics, secure token storage, session listener
     ├── networking/         # Dio HTTP client, offline cache, retry interceptor
     ├── storage/            # Encrypted local database (Hive/Isar/sqlite-cipher)

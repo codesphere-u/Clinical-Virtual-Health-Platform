@@ -1,5 +1,5 @@
 /**
- * @aura/auth - Cryptographic Password Hashing & Verification
+ * @docaas/auth - Cryptographic Password Hashing & Verification
  * Next-Generation Clinical & Virtual Health Platform
  */
 

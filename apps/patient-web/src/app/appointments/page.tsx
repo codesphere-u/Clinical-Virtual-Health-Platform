@@ -200,8 +200,8 @@ export default function AppointmentsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'wizard' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'wizard' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'wizard' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'wizard' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -215,8 +215,8 @@ export default function AppointmentsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'upcoming' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'upcoming' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'upcoming' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'upcoming' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -230,8 +230,8 @@ export default function AppointmentsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'history' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'history' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'history' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'history' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -258,7 +258,7 @@ export default function AppointmentsPage() {
                       width: '30px',
                       height: '30px',
                       borderRadius: '50%',
-                      background: step >= s.num ? 'var(--aura-teal)' : 'var(--bg-subtle)',
+                      background: step >= s.num ? 'var(--docaas-teal)' : 'var(--bg-subtle)',
                       color: step >= s.num ? '#ffffff' : 'var(--text-muted)',
                       display: 'flex',
                       alignItems: 'center',
@@ -304,7 +304,7 @@ export default function AppointmentsPage() {
                   onClick={() => setStep(2)}
                   style={{
                     padding: '10px 24px',
-                    background: 'var(--aura-teal)',
+                    background: 'var(--docaas-teal)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -364,7 +364,7 @@ export default function AppointmentsPage() {
                       style={{
                         padding: '18px',
                         borderRadius: 'var(--radius-lg)',
-                        border: isSelected ? '2px solid var(--aura-teal)' : '1px solid var(--border-light)',
+                        border: isSelected ? '2px solid var(--docaas-teal)' : '1px solid var(--border-light)',
                         background: isSelected ? '#f0fdf9' : '#ffffff',
                         cursor: 'pointer',
                         display: 'flex',
@@ -380,7 +380,7 @@ export default function AppointmentsPage() {
                             <strong style={{ fontSize: '15px', color: 'var(--text-main)' }}>{doc.name}</strong>
                             <span className="badge-status success"><ShieldCheck size={12} /> Verified</span>
                           </div>
-                          <div style={{ fontSize: '12px', color: 'var(--aura-teal)', fontWeight: 600 }}>{doc.specialty} • {doc.sub}</div>
+                          <div style={{ fontSize: '12px', color: 'var(--docaas-teal)', fontWeight: 600 }}>{doc.specialty} • {doc.sub}</div>
                           <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>{doc.credentials}</div>
                           <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Languages: {doc.languages.join(', ')}</div>
                         </div>
@@ -393,7 +393,7 @@ export default function AppointmentsPage() {
                           style={{
                             marginTop: '8px',
                             padding: '6px 14px',
-                            background: isSelected ? 'var(--aura-teal)' : 'var(--bg-subtle)',
+                            background: isSelected ? 'var(--docaas-teal)' : 'var(--bg-subtle)',
                             color: isSelected ? '#ffffff' : 'var(--text-main)',
                             border: 'none',
                             borderRadius: 'var(--radius-pill)',
@@ -422,7 +422,7 @@ export default function AppointmentsPage() {
                   onClick={() => setStep(3)}
                   style={{
                     padding: '10px 24px',
-                    background: selectedDoctor ? 'var(--aura-teal)' : 'var(--border-light)',
+                    background: selectedDoctor ? 'var(--docaas-teal)' : 'var(--border-light)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -466,9 +466,9 @@ export default function AppointmentsPage() {
                         style={{
                           padding: '12px 16px',
                           borderRadius: 'var(--radius-md)',
-                          border: isSlotSelected ? '2px solid var(--aura-teal)' : '1px solid var(--border-light)',
+                          border: isSlotSelected ? '2px solid var(--docaas-teal)' : '1px solid var(--border-light)',
                           background: isSlotSelected ? '#f0fdf9' : '#ffffff',
-                          color: isSlotSelected ? 'var(--aura-teal)' : 'var(--text-main)',
+                          color: isSlotSelected ? 'var(--docaas-teal)' : 'var(--text-main)',
                           fontSize: '13px',
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -499,7 +499,7 @@ export default function AppointmentsPage() {
                   onClick={() => setStep(4)}
                   style={{
                     padding: '10px 24px',
-                    background: selectedSlot ? 'var(--aura-teal)' : 'var(--border-light)',
+                    background: selectedSlot ? 'var(--docaas-teal)' : 'var(--border-light)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -588,7 +588,7 @@ export default function AppointmentsPage() {
                   onClick={() => setStep(5)}
                   style={{
                     padding: '10px 24px',
-                    background: symptoms.trim() ? 'var(--aura-teal)' : 'var(--border-light)',
+                    background: symptoms.trim() ? 'var(--docaas-teal)' : 'var(--border-light)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -622,7 +622,7 @@ export default function AppointmentsPage() {
                   <div>
                     <span style={{ color: 'var(--text-muted)' }}>Specialist:</span>
                     <div style={{ fontWeight: 700, color: 'var(--text-main)' }}>{selectedDoctor?.name}</div>
-                    <div style={{ fontSize: '12px', color: 'var(--aura-teal)' }}>{selectedDoctor?.credentials}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--docaas-teal)' }}>{selectedDoctor?.credentials}</div>
                   </div>
                   <div>
                     <span style={{ color: 'var(--text-muted)' }}>Date & Slot:</span>
@@ -669,7 +669,7 @@ export default function AppointmentsPage() {
                   onClick={handleBookingSubmit}
                   style={{
                     padding: '12px 28px',
-                    background: acceptedConsent ? 'var(--aura-teal)' : 'var(--border-light)',
+                    background: acceptedConsent ? 'var(--docaas-teal)' : 'var(--border-light)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -706,7 +706,7 @@ export default function AppointmentsPage() {
                   onClick={resetWizard}
                   style={{
                     padding: '12px 24px',
-                    background: 'var(--aura-teal)',
+                    background: 'var(--docaas-teal)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -748,7 +748,7 @@ export default function AppointmentsPage() {
                 <h3 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 4px 0', color: 'var(--text-main)' }}>
                   {apt.doctorName}
                 </h3>
-                <div style={{ fontSize: '13px', color: 'var(--aura-teal)', fontWeight: 600, marginBottom: '6px' }}>
+                <div style={{ fontSize: '13px', color: 'var(--docaas-teal)', fontWeight: 600, marginBottom: '6px' }}>
                   {apt.specialty} Virtual Consultation
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '13px', color: 'var(--text-muted)' }}>
@@ -766,7 +766,7 @@ export default function AppointmentsPage() {
                     alignItems: 'center',
                     gap: '6px',
                     padding: '10px 18px',
-                    background: 'var(--aura-teal)',
+                    background: 'var(--docaas-teal)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: 'var(--radius-md)',
@@ -822,7 +822,7 @@ export default function AppointmentsPage() {
                   <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--text-main)' }}>
                     {apt.doctorName}
                   </h3>
-                  <div style={{ fontSize: '12px', color: 'var(--aura-teal)', fontWeight: 600 }}>{apt.specialty}</div>
+                  <div style={{ fontSize: '12px', color: 'var(--docaas-teal)', fontWeight: 600 }}>{apt.specialty}</div>
                 </div>
 
                 <button
@@ -838,7 +838,7 @@ export default function AppointmentsPage() {
                     fontSize: '12px',
                     fontWeight: 600,
                     cursor: 'pointer',
-                    color: 'var(--aura-teal)',
+                    color: 'var(--docaas-teal)',
                   }}
                 >
                   <FileText size={14} />

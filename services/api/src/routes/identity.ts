@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Identity & Biometric KYC Routes
+ * @docaas/api-service - Identity & Biometric KYC Routes
  * Phase 2: Nigerian NIN/BVN Verification & Camera Passive Liveness
  */
 
@@ -9,8 +9,8 @@ import {
   verifyNigerianKyc,
   computeClinicianCompliancePassport,
   type ClinicianComplianceCheckInput,
-} from '@aura/auth';
-import { UserRole } from '@aura/domain';
+} from '@docaas/auth';
+import { UserRole } from '@docaas/domain';
 
 export async function identityRoutes(fastify: FastifyInstance): Promise<void> {
 

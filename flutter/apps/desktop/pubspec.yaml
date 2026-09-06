@@ -1,5 +1,5 @@
 name: clinician_desktop
-description: Aura Clinical Desktop Workstation for Windows, macOS, and Linux
+description: DOCAAS Clinical Desktop Workstation for Windows, macOS, and Linux
 version: 1.0.0+1
 publish_to: 'none'
 
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   aura_core:
     path: ../../packages/core
-  aura_design_system:
+  docaas_design_system:
     path: ../../packages/design_system
 
 dev_dependencies:

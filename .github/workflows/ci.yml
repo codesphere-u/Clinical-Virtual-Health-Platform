@@ -33,7 +33,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm --filter @aura/database run db:generate || true
+        run: pnpm --filter @docaas/database run db:generate || true
 
       - name: Run Typecheck
         run: pnpm run typecheck || true
@@ -107,19 +107,19 @@ jobs:
         service:
           - context: .
             dockerfile: services/api/Dockerfile
-            name: aura-api
+            name: docaas-api
           - context: .
             dockerfile: apps/patient-web/Dockerfile
-            name: aura-patient-web
+            name: docaas-patient-web
           - context: .
             dockerfile: apps/clinician-web/Dockerfile
-            name: aura-clinician-web
+            name: docaas-clinician-web
           - context: .
             dockerfile: apps/admin-web/Dockerfile
-            name: aura-admin-web
+            name: docaas-admin-web
           - context: .
             dockerfile: apps/analytics-web/Dockerfile
-            name: aura-analytics-web
+            name: docaas-analytics-web
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

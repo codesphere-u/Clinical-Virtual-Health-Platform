@@ -1,11 +1,11 @@
 /**
- * @aura/api-service - Diagnostic Investigations & Laboratory Orders
+ * @docaas/api-service - Diagnostic Investigations & Laboratory Orders
  * Conforms to ADR-002, ADR-008 (Secure Document Storage)
  */
 
 import { FastifyPluginAsync } from 'fastify';
 import crypto from 'node:crypto';
-import { UserRole, Jurisdiction } from '@aura/domain';
+import { UserRole, Jurisdiction } from '@docaas/domain';
 import { auditVault } from '../services/audit-vault.js';
 
 export interface StoredInvestigation {

@@ -1,5 +1,5 @@
 name: aura_appointments
-description: Appointment models, slot booking components and waiting room states for Aura Clinical
+description: Appointment models, slot booking components and waiting room states for DOCAAS Clinical
 version: 1.0.0
 publish_to: 'none'
 
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   aura_core:
     path: ../core
-  aura_design_system:
+  docaas_design_system:
     path: ../design_system
 
 dev_dependencies:

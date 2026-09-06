@@ -39,7 +39,7 @@ export function PatientShell({ children }: { children: React.ReactNode }) {
             <div style={{ fontSize: '16px', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
               DOCAAS
             </div>
-            <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--aura-teal)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--docaas-teal)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Virtual Care
             </div>
           </div>
@@ -189,7 +189,7 @@ export function PatientShell({ children }: { children: React.ReactNode }) {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '8px 16px',
-                background: 'var(--aura-teal)',
+                background: 'var(--docaas-teal)',
                 color: '#ffffff',
                 borderRadius: 'var(--radius-pill)',
                 fontSize: '13px',

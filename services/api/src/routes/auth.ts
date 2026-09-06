@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Auth Routes (Register, Login, Refresh, MFA Setup/Verify, Logout)
+ * @docaas/api-service - Auth Routes (Register, Login, Refresh, MFA Setup/Verify, Logout)
  * Phase 2: Authentication, RBAC & Biometric KYC Onboarding
  */
 
@@ -13,9 +13,9 @@ import {
   generateTotpSecret,
   verifyTotpToken,
   hasPermission,
-} from '@aura/auth';
-import { RegisterUserSchema, LoginSchema } from '@aura/models';
-import { UserRole, Jurisdiction } from '@aura/domain';
+} from '@docaas/auth';
+import { RegisterUserSchema, LoginSchema } from '@docaas/models';
+import { UserRole, Jurisdiction } from '@docaas/domain';
 
 // In-memory credential store (replaced by Prisma queries in full DB-wired build)
 const userStore = new Map<
@@ -86,7 +86,7 @@ export async function authRoutes(fastify: FastifyInstance): Promise<void> {
 
     // Demo persona passthrough for stakeholder testing
     const isDemo =
-      email.endsWith('@demo.aura') ||
+      email.endsWith('@demo.docaas') ||
       email.includes('demo.patient') ||
       email.includes('demo.clinician') ||
       email.includes('demo.admin');
@@ -257,7 +257,7 @@ export async function authRoutes(fastify: FastifyInstance): Promise<void> {
       return reply.status(404).send({ error: 'User not found.' });
     }
 
-    const totpSetup = generateTotpSecret(user.email, 'Aura Clinical Network');
+    const totpSetup = generateTotpSecret(user.email, 'DOCAAS Clinical Network');
     user.totpSecretBase32 = totpSetup.secret;
     user.backupCodes = totpSetup.backupCodes;
 

@@ -1,5 +1,5 @@
 {
-  "name": "@aura/video",
+  "name": "@docaas/video",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aura/domain": "workspace:*",
+    "@docaas/domain": "workspace:*",
     "livekit-server-sdk": "^2.10.0"
   },
   "devDependencies": {

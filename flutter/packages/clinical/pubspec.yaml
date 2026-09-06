@@ -1,5 +1,5 @@
 name: aura_clinical
-description: Clinical models, SOAP formats, vitals and prescription formatters for Aura Clinical
+description: Clinical models, SOAP formats, vitals and prescription formatters for DOCAAS Clinical
 version: 1.0.0
 publish_to: 'none'
 

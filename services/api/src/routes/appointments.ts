@@ -1,14 +1,14 @@
 /**
- * @aura/api-service - Production Appointment Routes & Lifecycle Management
+ * @docaas/api-service - Production Appointment Routes & Lifecycle Management
  * Conforms to ADR-009, ADR-010, ADR-013
  */
 
 import { FastifyPluginAsync } from 'fastify';
 import crypto from 'node:crypto';
-import { BookAppointmentSchema } from '@aura/models';
-import { AppointmentStatus, EncounterType, UserRole, Jurisdiction } from '@aura/domain';
+import { BookAppointmentSchema } from '@docaas/models';
+import { AppointmentStatus, EncounterType, UserRole, Jurisdiction } from '@docaas/domain';
 import { auditVault } from '../services/audit-vault.js';
-import { LiveKitVideoProvider, VideoService } from '@aura/video';
+import { LiveKitVideoProvider, VideoService } from '@docaas/video';
 
 const livekitProvider = new LiveKitVideoProvider({
   apiKey: process.env.LIVEKIT_API_KEY || 'devkey',

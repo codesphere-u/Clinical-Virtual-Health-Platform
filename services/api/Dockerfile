@@ -21,11 +21,11 @@ COPY packages/ packages/
 COPY tsconfig.base.json ./
 
 # Build shared packages that the API depends on, then the API itself
-RUN pnpm --filter @aura/models build || true
-RUN pnpm --filter @aura/validation build || true
-RUN pnpm --filter @aura/database build || true
-RUN pnpm --filter @aura/auth build || true
-RUN pnpm --filter @aura/api-service build
+RUN pnpm --filter @docaas/models build || true
+RUN pnpm --filter @docaas/validation build || true
+RUN pnpm --filter @docaas/database build || true
+RUN pnpm --filter @docaas/auth build || true
+RUN pnpm --filter @docaas/api-service build
 
 # ─── Stage 3: Production runner ───────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -42,8 +42,8 @@ COPY --from=builder /repo/node_modules ./node_modules
 COPY --from=builder /repo/packages ./packages
 
 # Security: run as non-root
-RUN addgroup -S aura && adduser -S aura -G aura
-USER aura
+RUN addgroup -S docaas && adduser -S docaas -G docaas
+USER docaas
 
 EXPOSE 3001
 

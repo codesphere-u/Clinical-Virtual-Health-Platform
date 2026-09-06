@@ -32,13 +32,13 @@ ccmp-monorepo/
 │   │   ├── clinician/        # Native Flutter Mobile for On-the-Go Doctors
 │   │   └── desktop/          # Flutter Desktop Workstation (macOS, Windows, Linux)
 │   └── packages/
-│       ├── design_system/    # Native Aura Clinical Theme & UI Tokens
+│       ├── design_system/    # Native DOCAAS Clinical Theme & UI Tokens
 │       ├── appointments/     # Booking & Calendar State Engines
 │       ├── clinical/         # Clinical SOAP & Vitals Formatters
 │       └── networking/       # Resilient Offline-First HTTP Client
 │
 ├── packages/
-│   ├── design-system/        # Aura Clinical Design System (React, Tailwind)
+│   ├── design-system/        # DOCAAS Clinical Design System (React, Tailwind)
 │   ├── database/             # PostgreSQL 16 schema (25+ entities) & Prisma ORM
 │   ├── domain/               # Healthcare state machines & entity logic
 │   ├── validation/           # Zod clinical contracts (Dosage, age, GMC/MDCN)

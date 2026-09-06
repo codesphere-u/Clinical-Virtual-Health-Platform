@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aura_design_system/aura_design_system.dart';
+import 'package:docaas_design_system/docaas_design_system.dart';
 
 void main() {
   runApp(const ClinicianWorkstationDesktopApp());
@@ -11,9 +11,9 @@ class ClinicianWorkstationDesktopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aura Clinical Workstation',
+      title: 'DOCAAS Clinical Workstation',
       debugShowCheckedModeBanner: false,
-      theme: AuraTheme.lightTheme,
+      theme: DocaasTheme.lightTheme,
       home: const WorkstationShell(),
     );
   }
@@ -32,18 +32,18 @@ class WorkstationShell extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: AuraColors.tealPrimary,
+                color: DocaasColors.tealPrimary,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: const Text(
-                'AURA WORKSTATION',
+                'DOCAAS WORKSTATION',
                 style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1),
               ),
             ),
             const SizedBox(width: 16),
             const Text('Dr. Elizabeth Adeyemi', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             const SizedBox(width: 8),
-            const Text('• GMC: 7654321', style: TextStyle(fontSize: 12, color: AuraColors.slateTextSecondary)),
+            const Text('• GMC: 7654321', style: TextStyle(fontSize: 12, color: DocaasColors.slateTextSecondary)),
           ],
         ),
         actions: [
@@ -67,14 +67,14 @@ class WorkstationShell extends StatelessWidget {
             width: 320,
             child: PatientSnapshotPanel(),
           ),
-          VerticalDivider(width: 1, color: AuraColors.slateBorder),
+          VerticalDivider(width: 1, color: DocaasColors.slateBorder),
 
           // Center Panel: Active Video & Consultation Timer (Expanded)
           Expanded(
             flex: 4,
             child: VideoConsultationViewport(),
           ),
-          VerticalDivider(width: 1, color: AuraColors.slateBorder),
+          VerticalDivider(width: 1, color: DocaasColors.slateBorder),
 
           // Right Panel: Tabbed Documentation Workspace (Width: 460)
           SizedBox(
@@ -98,26 +98,26 @@ class PatientSnapshotPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('PATIENT SNAPSHOT', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AuraColors.slateTextSecondary, letterSpacing: 0.8)),
+          const Text('PATIENT SNAPSHOT', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: DocaasColors.slateTextSecondary, letterSpacing: 0.8)),
           const SizedBox(height: 12),
-          const Text('Olumide Babalola', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AuraColors.slateTextPrimary)),
-          const Text('MRN: CVH-2026-0001 • 44y (1982-04-12)', style: TextStyle(fontSize: 12, color: AuraColors.slateTextSecondary)),
+          const Text('Olumide Babalola', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: DocaasColors.slateTextPrimary)),
+          const Text('MRN: CVH-2026-0001 • 44y (1982-04-12)', style: TextStyle(fontSize: 12, color: DocaasColors.slateTextSecondary)),
           const SizedBox(height: 16),
 
           // Allergies Warning
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AuraColors.roseBackground,
+              color: DocaasColors.roseBackground,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AuraColors.roseCritical.withAlpha(77)),
+              border: Border.all(color: DocaasColors.roseCritical.withAlpha(77)),
             ),
             child: Row(
               children: const [
-                Icon(Icons.warning_amber_rounded, color: AuraColors.roseCritical, size: 18),
+                Icon(Icons.warning_amber_rounded, color: DocaasColors.roseCritical, size: 18),
                 SizedBox(width: 8),
                 Expanded(
-                  child: Text('Allergy: Penicillin (Life-threatening)', style: TextStyle(color: AuraColors.roseCritical, fontSize: 11, fontWeight: FontWeight.bold)),
+                  child: Text('Allergy: Penicillin (Life-threatening)', style: TextStyle(color: DocaasColors.roseCritical, fontSize: 11, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -128,9 +128,9 @@ class PatientSnapshotPanel extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AuraColors.slateBackground,
+              color: DocaasColors.slateBackground,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AuraColors.slateBorder),
+              border: Border.all(color: DocaasColors.slateBorder),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +165,7 @@ class VideoConsultationViewport extends StatelessWidget {
                 SizedBox(height: 12),
                 Text('Encrypted Telemedicine Session Active', style: TextStyle(color: Colors.white70, fontSize: 14)),
                 SizedBox(height: 4),
-                Text('LiveKit WebRTC SFU • 1080p • 0% Packet Loss', style: TextStyle(color: AuraColors.emeraldVerified, fontSize: 11)),
+                Text('LiveKit WebRTC SFU • 1080p • 0% Packet Loss', style: TextStyle(color: DocaasColors.emeraldVerified, fontSize: 11)),
               ],
             ),
           ),
@@ -182,7 +182,7 @@ class VideoConsultationViewport extends StatelessWidget {
               ),
               child: Row(
                 children: const [
-                  Icon(Icons.lock, color: AuraColors.emeraldVerified, size: 14),
+                  Icon(Icons.lock, color: DocaasColors.emeraldVerified, size: 14),
                   SizedBox(width: 6),
                   Text('End-to-End Encrypted • 14:28', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
                 ],
@@ -211,7 +211,7 @@ class VideoConsultationViewport extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 IconButton.filled(
-                  style: IconButton.styleFrom(backgroundColor: AuraColors.roseCritical),
+                  style: IconButton.styleFrom(backgroundColor: DocaasColors.roseCritical),
                   icon: const Icon(Icons.call_end, color: Colors.white),
                   onPressed: () {},
                 ),
@@ -238,10 +238,10 @@ class DocumentationWorkspacePanel extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('CLINICAL ENCOUNTER (SOAP)', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AuraColors.slateTextSecondary, letterSpacing: 0.8)),
+              const Text('CLINICAL ENCOUNTER (SOAP)', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: DocaasColors.slateTextSecondary, letterSpacing: 0.8)),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AuraColors.tealPrimary,
+                  backgroundColor: DocaasColors.tealPrimary,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 ),

@@ -1,11 +1,11 @@
 /**
- * @aura/api-service - JWT Authentication Plugin
+ * @docaas/api-service - JWT Authentication Plugin
  * Fastify decorator: `request.actor` containing the verified ClinicalTokenPayload
  */
 
 import type { FastifyPluginAsync, FastifyRequest, FastifyReply } from 'fastify';
 import fp from 'fastify-plugin';
-import { verifyAccessToken, type ClinicalTokenPayload } from '@aura/auth';
+import { verifyAccessToken, type ClinicalTokenPayload } from '@docaas/auth';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -34,4 +34,4 @@ const authPlugin: FastifyPluginAsync = async (fastify) => {
   });
 };
 
-export default fp(authPlugin, { name: 'aura-auth' });
+export default fp(authPlugin, { name: 'docaas-auth' });

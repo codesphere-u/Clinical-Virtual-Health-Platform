@@ -82,8 +82,8 @@ export default function SettingsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'profile' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'profile' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'profile' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'profile' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -97,8 +97,8 @@ export default function SettingsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'privacy' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'privacy' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'privacy' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'privacy' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -112,8 +112,8 @@ export default function SettingsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'notifications' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'notifications' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'notifications' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'notifications' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -127,8 +127,8 @@ export default function SettingsPage() {
             fontWeight: 600,
             border: 'none',
             background: 'none',
-            color: activeTab === 'security' ? 'var(--aura-teal)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'security' ? '2px solid var(--aura-teal)' : '2px solid transparent',
+            color: activeTab === 'security' ? 'var(--docaas-teal)' : 'var(--text-muted)',
+            borderBottom: activeTab === 'security' ? '2px solid var(--docaas-teal)' : '2px solid transparent',
             cursor: 'pointer',
           }}
         >
@@ -263,7 +263,7 @@ export default function SettingsPage() {
             onClick={handleSave}
             style={{
               padding: '10px 24px',
-              background: 'var(--aura-teal)',
+              background: 'var(--docaas-teal)',
               color: '#ffffff',
               border: 'none',
               borderRadius: 'var(--radius-md)',
@@ -357,7 +357,7 @@ export default function SettingsPage() {
             onClick={handleSave}
             style={{
               padding: '10px 24px',
-              background: 'var(--aura-teal)',
+              background: 'var(--docaas-teal)',
               color: '#ffffff',
               border: 'none',
               borderRadius: 'var(--radius-md)',
@@ -436,7 +436,7 @@ export default function SettingsPage() {
             onClick={handleSave}
             style={{
               padding: '10px 24px',
-              background: 'var(--aura-teal)',
+              background: 'var(--docaas-teal)',
               color: '#ffffff',
               border: 'none',
               borderRadius: 'var(--radius-md)',

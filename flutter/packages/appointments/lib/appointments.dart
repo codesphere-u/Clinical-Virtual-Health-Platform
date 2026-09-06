@@ -1,7 +1,7 @@
 library aura_appointments;
 
 import 'package:flutter/material.dart';
-import 'package:aura_design_system/aura_design_system.dart';
+import 'package:docaas_design_system/docaas_design_system.dart';
 
 enum FlutterAppointmentStatus {
   booked,
@@ -54,17 +54,17 @@ class AppointmentCardWidget extends StatelessWidget {
   Color _getStatusColor() {
     switch (appointment.status) {
       case FlutterAppointmentStatus.booked:
-        return AuraColors.tealPrimary;
+        return DocaasColors.tealPrimary;
       case FlutterAppointmentStatus.patientWaiting:
         return Colors.amber.shade700;
       case FlutterAppointmentStatus.consultationStarted:
-        return AuraColors.emeraldVerified;
+        return DocaasColors.emeraldVerified;
       case FlutterAppointmentStatus.consultationCompleted:
-        return AuraColors.slateTextSecondary;
+        return DocaasColors.slateTextSecondary;
       case FlutterAppointmentStatus.cancelled:
-        return AuraColors.roseCritical;
+        return DocaasColors.roseCritical;
       default:
-        return AuraColors.tealPrimary;
+        return DocaasColors.tealPrimary;
     }
   }
 
@@ -76,7 +76,7 @@ class AppointmentCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AuraColors.slateBorder),
+        border: Border.all(color: DocaasColors.slateBorder),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.04),
@@ -94,8 +94,8 @@ class AppointmentCardWidget extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundColor: AuraColors.tealLight,
-                    child: const Icon(Icons.videocam, color: AuraColors.tealPrimary),
+                    backgroundColor: DocaasColors.tealLight,
+                    child: const Icon(Icons.videocam, color: DocaasColors.tealPrimary),
                   ),
                   const SizedBox(width: 12),
                   Column(
@@ -106,14 +106,14 @@ class AppointmentCardWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
-                          color: AuraColors.slateTextPrimary,
+                          color: DocaasColors.slateTextPrimary,
                         ),
                       ),
                       Text(
                         '${appointment.clinicianSpecialty} • ${appointment.clinicianLicense}',
                         style: const TextStyle(
                           fontSize: 12,
-                          color: AuraColors.slateTextSecondary,
+                          color: DocaasColors.slateTextSecondary,
                         ),
                       ),
                     ],
@@ -140,7 +140,7 @@ class AppointmentCardWidget extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             appointment.presentingReason,
-            style: const TextStyle(fontSize: 13, color: AuraColors.slateTextPrimary),
+            style: const TextStyle(fontSize: 13, color: DocaasColors.slateTextPrimary),
           ),
           const SizedBox(height: 14),
           Row(
@@ -148,14 +148,14 @@ class AppointmentCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.access_time, size: 14, color: AuraColors.slateTextSecondary),
+                  const Icon(Icons.access_time, size: 14, color: DocaasColors.slateTextSecondary),
                   const SizedBox(width: 4),
                   Text(
                     '${appointment.scheduledStart.hour}:${appointment.scheduledStart.minute.toString().padLeft(2, '0')}',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AuraColors.slateTextSecondary,
+                      color: DocaasColors.slateTextSecondary,
                     ),
                   ),
                 ],
@@ -165,7 +165,7 @@ class AppointmentCardWidget extends StatelessWidget {
                 icon: const Icon(Icons.meeting_room, size: 16),
                 label: Text(actionLabel),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AuraColors.tealPrimary,
+                  backgroundColor: DocaasColors.tealPrimary,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

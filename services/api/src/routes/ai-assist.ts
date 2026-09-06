@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Assistive Clinical AI Safety & Guardrail Routes
+ * @docaas/api-service - Assistive Clinical AI Safety & Guardrail Routes
  * Conforms to ADR-007: Assistive Clinical AI Safety & Guardrails
  */
 

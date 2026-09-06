@@ -1,5 +1,5 @@
 /**
- * @aura/design-system - Tokens & Visual Design Language
+ * @docaas/design-system - Tokens & Visual Design Language
  * Next-Generation Clinical & Virtual Health Platform
  */
 

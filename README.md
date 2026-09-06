@@ -29,7 +29,7 @@ Developed under the Software Development Contract dated 1st September 2026 for *
 - [Monorepo Architecture](#-monorepo-architecture)
 - [The 4 Core Web Portals](#-the-4-core-web-portals)
 - [Cross-Platform Native Mobile & Desktop](#-cross-platform-native-mobile--desktop)
-- [Visual Architecture: Aura Clinical Design System](#-visual-architecture-aura-clinical-design-system)
+- [Visual Architecture: DOCAAS Clinical Design System](#-visual-architecture-docaas-clinical-design-system)
 - [Clinical Safety, AI & Security Guardrails](#-clinical-safety-ai--security-guardrails)
 - [Contract Milestones & Delivery Status](#-contract-milestones--delivery-status)
 - [Architectural Decision Records (ADRs)](#-architectural-decision-records-adrs)
@@ -68,7 +68,7 @@ ccmp-monorepo/
 │   │   └── desktop/              # Native Flutter Workstation (Windows, macOS, Linux)
 │   └── packages/
 │       ├── core/                 # Shared Flutter primitives & results
-│       ├── design_system/        # Native Flutter Aura Clinical theme & widgets
+│       ├── design_system/        # Native Flutter DOCAAS Clinical theme & widgets
 │       ├── auth/                 # Biometric KYC & secure token storage
 │       ├── networking/           # Offline-resilient Dio HTTP client
 │       ├── clinical/             # SOAP models & clinical vitals formatters
@@ -82,7 +82,7 @@ ccmp-monorepo/
 │   ├── validation/               # Clinical validators (GMC/MDCN, dosage, contraindications)
 │   ├── video/                    # Provider-agnostic Video Gateway & LiveKit SFU driver
 │   ├── auth/                     # Stateless JWT, rotating refresh, TOTP MFA, KYC, RBAC
-│   └── design-system/            # Aura Clinical tokens, Tailwind plugin, React UI
+│   └── design-system/            # DOCAAS Clinical tokens, Tailwind plugin, React UI
 │
 ├── services/
 │   └── api/                      # Fastify REST/OpenAPI core clinical server (Port 3001)
@@ -122,19 +122,19 @@ The mobile and desktop ecosystem is engineered with a **modular shared Flutter a
 
 ---
 
-## 🎨 Visual Architecture: Aura Clinical Design System
+## 🎨 Visual Architecture: DOCAAS Clinical Design System
 
-The **Aura Clinical Design System** ([ADR-015](docs/architecture/adr/ADR-015-web-architecture-design-system.md)) eliminates visual clutter and cognitive fatigue while strictly enforcing **WCAG 2.2 AA/AAA** accessibility:
+The **DOCAAS Clinical Design System** ([ADR-015](docs/architecture/adr/ADR-015-web-architecture-design-system.md)) eliminates visual clutter and cognitive fatigue while strictly enforcing **WCAG 2.2 AA/AAA** accessibility:
 
 <div align="center">
 
 | Token Name | Hex Code | Visual Sample | Clinical Semantics & Purpose |
 | :--- | :---: | :---: | :--- |
-| **`aura-teal`** | `#0D746F` | ![#0D746F](https://via.placeholder.com/15/0D746F/000000?text=+) | **Primary Interactive Anchor**: Trust, surgical clarity, brand anchor |
-| **`aura-slate`** | `#0F172A` | ![#0F172A](https://via.placeholder.com/15/0F172A/000000?text=+) | **Neutral Surface / Text**: High-contrast, zero-eyestrain reading |
-| **`aura-emerald`**| `#059669` | ![#059669](https://via.placeholder.com/15/059669/000000?text=+) | **Verification & Trust**: GMC/MDCN verified badges, compliance checks |
-| **`aura-rose`** | `#E11D48` | ![#E11D48](https://via.placeholder.com/15/E11D48/000000?text=+) | **Critical Alert / Allergy**: Drug contraindications (always with icon + text) |
-| **`aura-amber`** | `#D97706` | ![#D97706](https://via.placeholder.com/15/D97706/000000?text=+) | **Safeguarding / Warning**: Expiring licenses, cross-border consent gates |
+| **`docaas-teal`** | `#0D746F` | ![#0D746F](https://via.placeholder.com/15/0D746F/000000?text=+) | **Primary Interactive Anchor**: Trust, surgical clarity, brand anchor |
+| **`docaas-slate`** | `#0F172A` | ![#0F172A](https://via.placeholder.com/15/0F172A/000000?text=+) | **Neutral Surface / Text**: High-contrast, zero-eyestrain reading |
+| **`docaas-emerald`**| `#059669` | ![#059669](https://via.placeholder.com/15/059669/000000?text=+) | **Verification & Trust**: GMC/MDCN verified badges, compliance checks |
+| **`docaas-rose`** | `#E11D48` | ![#E11D48](https://via.placeholder.com/15/E11D48/000000?text=+) | **Critical Alert / Allergy**: Drug contraindications (always with icon + text) |
+| **`docaas-amber`** | `#D97706` | ![#D97706](https://via.placeholder.com/15/D97706/000000?text=+) | **Safeguarding / Warning**: Expiring licenses, cross-border consent gates |
 
 </div>
 
@@ -185,7 +185,7 @@ All 15 foundational engineering boundaries are formally locked in **[`docs/archi
 12. [ADR-012: Observability, Structured Logging & Health Diagnostics](docs/architecture/adr/ADR-012-observability.md)
 13. [ADR-013: API Versioning, Idempotency & Contracts](docs/architecture/adr/ADR-013-api-versioning-idempotency.md)
 14. [ADR-014: Modular Shared Flutter Architecture for Mobile & Desktop](docs/architecture/adr/ADR-014-flutter-architecture.md)
-15. [ADR-015: Web Architecture & Aura Clinical Design System](docs/architecture/adr/ADR-015-web-architecture-design-system.md)
+15. [ADR-015: Web Architecture & DOCAAS Clinical Design System](docs/architecture/adr/ADR-015-web-architecture-design-system.md)
 
 ---
 

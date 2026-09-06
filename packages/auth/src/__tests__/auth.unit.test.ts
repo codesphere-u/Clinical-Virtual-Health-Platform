@@ -1,5 +1,5 @@
 /**
- * Unit Tests for @aura/auth
+ * Unit Tests for @docaas/auth
  * Validates JWT signing/verification, Password hashing, TOTP MFA, and RBAC permissions
  */
 
@@ -15,11 +15,11 @@ import {
   verifyTotpToken,
   hasPermission,
 } from '../index.js';
-import { UserRole, Jurisdiction } from '@aura/domain';
+import { UserRole, Jurisdiction } from '@docaas/domain';
 import * as OTPAuth from 'otpauth';
 
 async function runAuthTests() {
-  console.log('🧪 Running @aura/auth unit tests...');
+  console.log('🧪 Running @docaas/auth unit tests...');
 
   // 1. Password Hashing
   const rawPassword = 'ClinicalSecurePass2026!';
@@ -88,7 +88,7 @@ async function runAuthTests() {
   assert.equal(hasPermission(UserRole.PATIENT, 'records:read'), true);
   console.log('  ✅ Role-based access control (RBAC) permission check passed');
 
-  console.log('🎉 ALL @aura/auth UNIT TESTS PASSED!\n');
+  console.log('🎉 ALL @docaas/auth UNIT TESTS PASSED!\n');
 }
 
 runAuthTests().catch((err) => {

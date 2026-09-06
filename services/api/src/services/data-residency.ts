@@ -1,9 +1,9 @@
 /**
- * @aura/api-service - Dual-Jurisdiction Data Residency Policy Engine
+ * @docaas/api-service - Dual-Jurisdiction Data Residency Policy Engine
  * Conforms to ADR-006: Dual-Jurisdiction Data Residency Policy Engine (Nigeria NDPA 2023 & UK GDPR)
  */
 
-import { Jurisdiction, UserRole } from '@aura/domain';
+import { Jurisdiction, UserRole } from '@docaas/domain';
 import { auditVault } from './audit-vault.js';
 
 export interface DataTransferRequest {

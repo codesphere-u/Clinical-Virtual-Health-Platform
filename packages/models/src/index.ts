@@ -1,5 +1,5 @@
 /**
- * @aura/models - Zod Schemas and Validated DTOs
+ * @docaas/models - Zod Schemas and Validated DTOs
  * Next-Generation Clinical & Virtual Health Platform
  */
 
@@ -8,9 +8,9 @@ import {
   UserRole,
   Jurisdiction,
   EncounterType,
-} from '@aura/domain';
+} from '@docaas/domain';
 
-export * from '@aura/domain';
+export * from '@docaas/domain';
 
 
 // ==========================================

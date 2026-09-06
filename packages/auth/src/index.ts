@@ -1,5 +1,5 @@
 /**
- * @aura/auth - Complete Authentication, RBAC & KYC Engine
+ * @docaas/auth - Complete Authentication, RBAC & KYC Engine
  * Next-Generation Clinical & Virtual Health Platform
  */
 

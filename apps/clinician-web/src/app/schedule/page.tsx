@@ -295,7 +295,7 @@ export default function ClinicianSchedulePage() {
             style={{
               marginTop: '8px',
               padding: '12px',
-              background: 'var(--aura-teal)',
+              background: 'var(--docaas-teal)',
               color: '#ffffff',
               border: 'none',
               borderRadius: '8px',

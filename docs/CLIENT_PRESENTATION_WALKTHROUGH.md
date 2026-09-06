@@ -12,7 +12,7 @@
 | Time | Agenda Item | Key Objective |
 | :--- | :--- | :--- |
 | **00:00 – 00:05** | Welcome & Contract Alignment | Review scope, timeline, and milestone architecture under the 01/09/2026 Contract. |
-| **00:05 – 00:10** | Visual Architecture & Aura Design System | Showcase the calm clinical aesthetic, typography, and accessibility standards. |
+| **00:05 – 00:10** | Visual Architecture & DOCAAS Design System | Showcase the calm clinical aesthetic, typography, and accessibility standards. |
 | **00:10 – 00:25** | Live Platform Demonstrations | Interactive walkthrough of Patient, Clinician, Admin, and Analytics portals. |
 | **00:25 – 00:30** | Regulatory & Security Architecture | Demonstrate NDPA/UK GDPR data sovereignty and SHA-256 audit ledger. |
 | **00:30 – 00:35** | Phase 3–4 Progress Preview & Next Steps | Show active development progress and confirm Phase 1 sign-off & invoice release. |
@@ -32,16 +32,16 @@
 
 ---
 
-### Part 2: Visual Architecture — Aura Clinical Design System (5 mins)
+### Part 2: Visual Architecture — DOCAAS Clinical Design System (5 mins)
 
 **What to Show:**
 - Open [`packages/design-system/src/tokens.ts`](file:///c:/Users/darka/Desktop/CLINICAL%20&%20VIRTUAL%20HEALTH%20PLATFORM/packages/design-system/src/tokens.ts) and show any web portal UI.
 
 **What to Say:**
-> *"Legacy healthcare software like SystmOne or traditional EHRs often suffer from visual clutter and cognitive overload. For CCMP, we developed the **Aura Clinical Design System**:*
-> - *Primary Anchor (`#0D746F` - Aura Teal): Establishes medical authority, calm, and focus.*
-> - *Clinical Alert System (`#E11D48` - Aura Rose): Never relies on color alone; always paired with explicit icons and text badges to eliminate ambiguity during medication prescription.*
-> - *Compliance & Verification Badges (`#059669` - Aura Emerald): Highlights verified GMC and MDCN credentials.*
+> *"Legacy healthcare software like SystmOne or traditional EHRs often suffer from visual clutter and cognitive overload. For CCMP, we developed the **DOCAAS Clinical Design System**:*
+> - *Primary Anchor (`#0D746F` - DOCAAS Teal): Establishes medical authority, calm, and focus.*
+> - *Clinical Alert System (`#E11D48` - DOCAAS Rose): Never relies on color alone; always paired with explicit icons and text badges to eliminate ambiguity during medication prescription.*
+> - *Compliance & Verification Badges (`#059669` - DOCAAS Emerald): Highlights verified GMC and MDCN credentials.*
 > - *Full WCAG 2.2 AA/AAA compliance: Ensures high contrast, full keyboard navigation, and screen-reader accessibility for patients with diverse needs."*
 
 ---

@@ -1,10 +1,10 @@
 /**
- * @aura/auth - Biometric KYC, Passive Liveness & Clinician Compliance Pipeline
+ * @docaas/auth - Biometric KYC, Passive Liveness & Clinician Compliance Pipeline
  * Next-Generation Clinical & Virtual Health Platform
  */
 
-import { VerificationStatus } from '@aura/domain';
-import { validateNigerianNin, validateNigerianBvn, validateGmcNumber } from '@aura/validation';
+import { VerificationStatus } from '@docaas/domain';
+import { validateNigerianNin, validateNigerianBvn, validateGmcNumber } from '@docaas/validation';
 
 export interface LivenessEvaluationRequest {
   imageBufferOrBase64: string;

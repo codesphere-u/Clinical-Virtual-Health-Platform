@@ -1,9 +1,9 @@
-library aura_design_system;
+library docaas_design_system;
 
 import 'package:flutter/material.dart';
 
-/// Aura Clinical Color Palette for Flutter
-class AuraColors {
+/// DOCAAS Clinical Color Palette for Flutter
+class DocaasColors {
   // Primary Clinical Anchor
   static const Color tealPrimary = Color(0xFF0D746F);
   static const Color tealDark = Color(0xFF0A5F5B);
@@ -31,27 +31,27 @@ class AuraColors {
 }
 
 /// Clinical App Theme Data
-class AuraTheme {
+class DocaasTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: AuraColors.slateBackground,
+      scaffoldBackgroundColor: DocaasColors.slateBackground,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AuraColors.tealPrimary,
-        primary: AuraColors.tealPrimary,
-        surface: AuraColors.slateCard,
+        seedColor: DocaasColors.tealPrimary,
+        primary: DocaasColors.tealPrimary,
+        surface: DocaasColors.slateCard,
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
-        foregroundColor: AuraColors.slateTextPrimary,
+        foregroundColor: DocaasColors.slateTextPrimary,
         elevation: 0,
         centerTitle: false,
       ),
       cardTheme: CardTheme(
-        color: AuraColors.slateCard,
+        color: DocaasColors.slateCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: AuraColors.slateBorder),
+          side: const BorderSide(color: DocaasColors.slateBorder),
           borderRadius: BorderRadius.circular(12),
         ),
       ),

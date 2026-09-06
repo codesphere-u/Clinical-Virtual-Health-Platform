@@ -394,7 +394,7 @@ export default function ConsultationRoomPage() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--ws-muted)' }}>
-              <Activity size={15} style={{ color: 'var(--aura-teal)' }} />
+              <Activity size={15} style={{ color: 'var(--docaas-teal)' }} />
               Live Patient Telemetry
             </div>
 
@@ -530,7 +530,7 @@ export default function ConsultationRoomPage() {
                   onClick={() => setShowSignModal(true)}
                   disabled={noteSigned}
                   style={{
-                    background: noteSigned ? '#f1f5f9' : 'var(--aura-teal)',
+                    background: noteSigned ? '#f1f5f9' : 'var(--docaas-teal)',
                     color: noteSigned ? '#94a3b8' : '#ffffff',
                     border: 'none',
                     borderRadius: '8px',
@@ -554,8 +554,8 @@ export default function ConsultationRoomPage() {
           {/* Tab 2: AI Ambient Scribe */}
           {activeTab === 'ai' && (
             <div style={{ padding: '18px', display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
-              <div style={{ background: '#f0fdf9', border: '1px solid var(--aura-teal-border)', borderRadius: '12px', padding: '14px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--aura-teal)', fontWeight: 800, fontSize: '13px' }}>
+              <div style={{ background: '#f0fdf9', border: '1px solid var(--docaas-teal-border)', borderRadius: '12px', padding: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--docaas-teal)', fontWeight: 800, fontSize: '13px' }}>
                   <Sparkles size={16} />
                   Live Clinical Audio Transcription
                 </div>
@@ -578,7 +578,7 @@ export default function ConsultationRoomPage() {
                 <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '12px', color: '#334155', lineHeight: 1.6 }}>
                   <li>Patient confirms adherence to Amlodipine 5mg.</li>
                   <li>Occipital headaches present in the evenings (3-4 times per week).</li>
-                  <li>Denies orthopnea, chest pressure, visual aura, or pedal edema.</li>
+                  <li>Denies orthopnea, chest pressure, visual docaas, or pedal edema.</li>
                   <li>Clinician recommendation: Up-titrate dose to 10mg daily with home telemetry.</li>
                 </ul>
               </div>
@@ -662,7 +662,7 @@ export default function ConsultationRoomPage() {
                 onClick={() => alert(`Prescription authorized: ${rxInput}`)}
                 style={{
                   marginTop: 'auto',
-                  background: rxSafetyAlert ? '#cbd5e1' : 'var(--aura-teal)',
+                  background: rxSafetyAlert ? '#cbd5e1' : 'var(--docaas-teal)',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: '8px',
@@ -722,7 +722,7 @@ export default function ConsultationRoomPage() {
                   setShowSignModal(false);
                 }}
                 style={{
-                  background: 'var(--aura-teal)',
+                  background: 'var(--docaas-teal)',
                   color: '#ffffff',
                   border: 'none',
                   padding: '8px 20px',

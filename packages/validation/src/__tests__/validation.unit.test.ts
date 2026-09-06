@@ -1,5 +1,5 @@
 /**
- * Unit Tests for @aura/validation
+ * Unit Tests for @docaas/validation
  * Validates GMC, MDCN, NIN, BVN, Age Calculation, and Allergy Safety Cross-Matching
  */
 
@@ -12,10 +12,10 @@ import {
   calculatePatientAge,
   checkAllergyConflict,
 } from '../index.js';
-import { Jurisdiction, SeverityLevel } from '@aura/domain';
+import { Jurisdiction, SeverityLevel } from '@docaas/domain';
 
 async function runValidationTests() {
-  console.log('🧪 Running @aura/validation unit tests...');
+  console.log('🧪 Running @docaas/validation unit tests...');
 
   // 1. GMC Validation
   assert.equal(validateGmcNumber('7654321'), true);
@@ -77,7 +77,7 @@ async function runValidationTests() {
   assert.equal(safeMed.hasConflict, false);
   console.log('  ✅ Clinical allergy & cross-reactivity blocks passed');
 
-  console.log('🎉 ALL @aura/validation UNIT TESTS PASSED!\n');
+  console.log('🎉 ALL @docaas/validation UNIT TESTS PASSED!\n');
 }
 
 runValidationTests().catch((err) => {

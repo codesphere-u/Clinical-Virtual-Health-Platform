@@ -1,13 +1,13 @@
 /**
- * @aura/api-service - E-Prescriptions & Allergy Safety Checks
+ * @docaas/api-service - E-Prescriptions & Allergy Safety Checks
  * Conforms to ADR-002, ADR-004, ADR-010
  */
 
 import { FastifyPluginAsync } from 'fastify';
 import crypto from 'node:crypto';
-import { CreatePrescriptionSchema, PrescriptionItemSchema } from '@aura/models';
-import { SeverityLevel, UserRole, Jurisdiction } from '@aura/domain';
-import { checkAllergyConflict } from '@aura/validation';
+import { CreatePrescriptionSchema, PrescriptionItemSchema } from '@docaas/models';
+import { SeverityLevel, UserRole, Jurisdiction } from '@docaas/domain';
+import { checkAllergyConflict } from '@docaas/validation';
 import { auditVault } from '../services/audit-vault.js';
 import { z } from 'zod';
 

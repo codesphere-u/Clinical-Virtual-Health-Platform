@@ -1,6 +1,6 @@
 "use strict";
 /**
- * @aura/database Seed Script
+ * @docaas/database Seed Script
  * Generates realistic clinical datasets for Nigerian patients & British/GMC clinicians
  */
 Object.defineProperty(exports, "__esModule", { value: true });

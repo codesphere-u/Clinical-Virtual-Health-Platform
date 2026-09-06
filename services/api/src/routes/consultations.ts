@@ -1,13 +1,13 @@
 /**
- * @aura/api-service - Clinical Workstation & SOAP Consultation Notes
+ * @docaas/api-service - Clinical Workstation & SOAP Consultation Notes
  * Conforms to ADR-002, ADR-010, ADR-015
  */
 
 import { FastifyPluginAsync } from 'fastify';
 import crypto from 'node:crypto';
-import { SaveClinicalNoteSchema } from '@aura/models';
-import { AppointmentStatus, SeverityLevel, UserRole, Jurisdiction } from '@aura/domain';
-import { calculatePatientAge } from '@aura/validation';
+import { SaveClinicalNoteSchema } from '@docaas/models';
+import { AppointmentStatus, SeverityLevel, UserRole, Jurisdiction } from '@docaas/domain';
+import { calculatePatientAge } from '@docaas/validation';
 import { auditVault } from '../services/audit-vault.js';
 import { appointmentsDb } from './appointments.js';
 

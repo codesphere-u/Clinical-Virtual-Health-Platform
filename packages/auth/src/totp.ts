@@ -1,5 +1,5 @@
 /**
- * @aura/auth - TOTP Multi-Factor Authentication (RFC 6238)
+ * @docaas/auth - TOTP Multi-Factor Authentication (RFC 6238)
  * Next-Generation Clinical & Virtual Health Platform
  */
 
@@ -14,7 +14,7 @@ export interface TotpSetupResult {
 /**
  * Generates a new TOTP secret, backup codes, and an otpauth URI for QR code presentation.
  */
-export function generateTotpSecret(email: string, issuer = 'Aura Clinical Network'): TotpSetupResult {
+export function generateTotpSecret(email: string, issuer = 'DOCAAS Clinical Network'): TotpSetupResult {
   const secret = new OTPAuth.Secret({ size: 20 });
   const totp = new OTPAuth.TOTP({
     issuer,
@@ -46,7 +46,7 @@ export function generateTotpSecret(email: string, issuer = 'Aura Clinical Networ
 export function verifyTotpToken(token: string, secretBase32: string): boolean {
   try {
     const totp = new OTPAuth.TOTP({
-      issuer: 'Aura Clinical Network',
+      issuer: 'DOCAAS Clinical Network',
       algorithm: 'SHA1',
       digits: 6,
       period: 30,

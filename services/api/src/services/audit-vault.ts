@@ -1,10 +1,10 @@
 /**
- * @aura/api-service - Tamper-Evident SHA-256 Audit Trail Vault
+ * @docaas/api-service - Tamper-Evident SHA-256 Audit Trail Vault
  * Conforms to ADR-010: Tamper-Evident Cryptographic Audit Chaining
  */
 
 import crypto from 'node:crypto';
-import { UserRole, Jurisdiction } from '@aura/domain';
+import { UserRole, Jurisdiction } from '@docaas/domain';
 
 export interface AuditEventInput {
   actorId: string;

@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Tamper-Evident SHA-256 Audit Trail Inspection & Verification
+ * @docaas/api-service - Tamper-Evident SHA-256 Audit Trail Inspection & Verification
  * Conforms to ADR-010: Tamper-Evident SHA-256 Audit Trail
  */
 

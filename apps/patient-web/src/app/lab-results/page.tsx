@@ -112,7 +112,7 @@ export default function LabResultsPage() {
             alignItems: 'center',
             gap: '6px',
             padding: '9px 18px',
-            background: 'var(--aura-teal)',
+            background: 'var(--docaas-teal)',
             color: '#ffffff',
             border: 'none',
             borderRadius: 'var(--radius-md)',
@@ -261,7 +261,7 @@ export default function LabResultsPage() {
                             fontSize: '12px',
                             fontWeight: 600,
                             cursor: 'pointer',
-                            color: 'var(--aura-teal)',
+                            color: 'var(--docaas-teal)',
                           }}
                         >
                           <Download size={14} />

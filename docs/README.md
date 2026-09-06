@@ -33,7 +33,7 @@ All architectural decisions are codified across 15 formal records in **[`docs/ar
 | **[ADR-012](architecture/adr/ADR-012-observability.md)** | Observability & Structured Logging | Pino structured JSON logging with automated redaction of Personal Health Information (PHI). |
 | **[ADR-013](architecture/adr/ADR-013-api-versioning-idempotency.md)** | API Versioning & Idempotency | Contract-first Zod schemas, `/api/v1` URL prefixes, Redis idempotency keys. |
 | **[ADR-014](architecture/adr/ADR-014-flutter-architecture.md)** | Modular Shared Flutter Architecture | Cross-platform mobile (iOS/Android) and desktop workstation using decoupled packages. |
-| **[ADR-015](architecture/adr/ADR-015-web-architecture-design-system.md)** | Web Architecture & Aura Design System | Next.js 15 App Router, React Server Components, Aura Clinical palette, WCAG 2.2 AA/AAA. |
+| **[ADR-015](architecture/adr/ADR-015-web-architecture-design-system.md)** | Web Architecture & DOCAAS Design System | Next.js 15 App Router, React Server Components, DOCAAS Clinical palette, WCAG 2.2 AA/AAA. |
 
 ---
 

@@ -1,9 +1,9 @@
 /**
- * @aura/validation - Healthcare, Clinical & Statutory Validation Rules
+ * @docaas/validation - Healthcare, Clinical & Statutory Validation Rules
  * Next-Generation Clinical & Virtual Health Platform
  */
 
-import { Jurisdiction, SeverityLevel } from '@aura/domain';
+import { Jurisdiction, SeverityLevel } from '@docaas/domain';
 
 // ==========================================
 // 1. Regulatory License Validators

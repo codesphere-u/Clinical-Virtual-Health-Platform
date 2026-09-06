@@ -1,5 +1,5 @@
 /**
- * Unit Tests for @aura/domain
+ * Unit Tests for @docaas/domain
  * Validates Appointment State Machine transitions and Data Residency enums
  */
 
@@ -13,7 +13,7 @@ import {
 } from '../index.js';
 
 async function runDomainTests() {
-  console.log('🧪 Running @aura/domain unit tests...');
+  console.log('🧪 Running @docaas/domain unit tests...');
 
   // 1. Legal Appointment Transitions
   assert.equal(
@@ -75,7 +75,7 @@ async function runDomainTests() {
   assert.equal(DataClassificationTier.TIER_2_CLINICAL_NOTE, 'tier_2_clinical_note');
   console.log('  ✅ Core roles and residency classification verified');
 
-  console.log('🎉 ALL @aura/domain UNIT TESTS PASSED!\n');
+  console.log('🎉 ALL @docaas/domain UNIT TESTS PASSED!\n');
 }
 
 runDomainTests().catch((err) => {

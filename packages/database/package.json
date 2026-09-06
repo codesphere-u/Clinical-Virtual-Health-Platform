@@ -1,5 +1,5 @@
 {
-  "name": "@aura/database",
+  "name": "@docaas/database",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/index.js",

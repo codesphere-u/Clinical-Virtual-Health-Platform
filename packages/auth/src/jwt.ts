@@ -1,12 +1,12 @@
 /**
- * @aura/auth - Stateless JWTs & Rotating Refresh Tokens
+ * @docaas/auth - Stateless JWTs & Rotating Refresh Tokens
  * Next-Generation Clinical & Virtual Health Platform
  */
 
 import { SignJWT, jwtVerify, type JWTPayload } from 'jose';
-import { UserRole, Jurisdiction } from '@aura/domain';
+import { UserRole, Jurisdiction } from '@docaas/domain';
 
-const DEFAULT_SECRET = 'clinical-aura-super-secret-encryption-key-for-development-32chars!';
+const DEFAULT_SECRET = 'clinical-docaas-super-secret-encryption-key-for-development-32chars!';
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || DEFAULT_SECRET);
 
 export interface ClinicalTokenPayload extends JWTPayload {
@@ -45,8 +45,8 @@ export async function signAccessToken(payload: {
   })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
-    .setIssuer('aura:clinical:auth')
-    .setAudience('aura:clinical:clients')
+    .setIssuer('docaas:clinical:auth')
+    .setAudience('docaas:clinical:clients')
     .setExpirationTime('15m')
     .sign(JWT_SECRET);
 }
@@ -68,8 +68,8 @@ export async function signRefreshToken(payload: {
   })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
-    .setIssuer('aura:clinical:auth')
-    .setAudience('aura:clinical:refresh')
+    .setIssuer('docaas:clinical:auth')
+    .setAudience('docaas:clinical:refresh')
     .setExpirationTime('30d')
     .sign(JWT_SECRET);
 }
@@ -79,8 +79,8 @@ export async function signRefreshToken(payload: {
  */
 export async function verifyAccessToken(token: string): Promise<ClinicalTokenPayload> {
   const { payload } = await jwtVerify(token, JWT_SECRET, {
-    issuer: 'aura:clinical:auth',
-    audience: 'aura:clinical:clients',
+    issuer: 'docaas:clinical:auth',
+    audience: 'docaas:clinical:clients',
   });
 
   return payload as ClinicalTokenPayload;
@@ -96,8 +96,8 @@ export async function verifyRefreshToken(token: string): Promise<JWTPayload & {
   rotationIndex: number;
 }> {
   const { payload } = await jwtVerify(token, JWT_SECRET, {
-    issuer: 'aura:clinical:auth',
-    audience: 'aura:clinical:refresh',
+    issuer: 'docaas:clinical:auth',
+    audience: 'docaas:clinical:refresh',
   });
 
   return payload as JWTPayload & {

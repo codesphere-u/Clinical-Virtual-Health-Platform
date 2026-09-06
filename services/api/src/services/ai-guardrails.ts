@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Assistive Clinical AI Safety & Guardrails Engine
+ * @docaas/api-service - Assistive Clinical AI Safety & Guardrails Engine
  * Conforms to ADR-007: Assistive Clinical AI Safety & Guardrails
  */
 
@@ -113,7 +113,7 @@ class ClinicalAiGuardrailsEngine {
         uk: '999',
       },
       disclaimer:
-        'AURA CLINICAL AI ASSIST: Decision support only. All clinical assessments and treatment decisions must be independently validated by a licensed physician.',
+        'DOCAAS CLINICAL AI ASSIST: Decision support only. All clinical assessments and treatment decisions must be independently validated by a licensed physician.',
     };
   }
 
@@ -135,7 +135,7 @@ class ClinicalAiGuardrailsEngine {
         recommendedInvestigations: ['Fundoscopy (in clinic)', 'Blood pressure monitoring'],
       });
       suggestions.push({
-        condition: 'Migraine without aura',
+        condition: 'Migraine without docaas',
         icd10Code: 'G43.0',
         confidenceScore: 0.65,
         clinicalRationale: 'Unilateral or throbbing character with possible photophobia or nausea.',

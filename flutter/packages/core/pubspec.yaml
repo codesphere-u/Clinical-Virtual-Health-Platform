@@ -1,5 +1,5 @@
 name: aura_core
-description: Core primitives, errors, and base utilities for Aura Clinical Flutter applications
+description: Core primitives, errors, and base utilities for DOCAAS Clinical Flutter applications
 version: 1.0.0
 publish_to: 'none'
 

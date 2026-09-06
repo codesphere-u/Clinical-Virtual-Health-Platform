@@ -1,9 +1,9 @@
 /**
- * @aura/auth - RBAC & Attribute-Based Clinical Access Control (ABAC)
+ * @docaas/auth - RBAC & Attribute-Based Clinical Access Control (ABAC)
  * Next-Generation Clinical & Virtual Health Platform
  */
 
-import { UserRole } from '@aura/domain';
+import { UserRole } from '@docaas/domain';
 
 export type ClinicalPermission =
   | 'records:read'

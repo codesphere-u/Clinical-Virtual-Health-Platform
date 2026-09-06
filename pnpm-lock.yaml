@@ -23,16 +23,16 @@ importers:
 
   apps/admin-web:
     dependencies:
-      '@aura/design-system':
+      '@docaas/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../../packages/models
-      '@aura/validation':
+      '@docaas/validation':
         specifier: workspace:*
         version: link:../../packages/validation
       clsx:
@@ -78,7 +78,7 @@ importers:
 
   apps/analytics-web:
     dependencies:
-      '@aura/design-system':
+      '@docaas/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
       lucide-react:
@@ -112,16 +112,16 @@ importers:
 
   apps/clinician-web:
     dependencies:
-      '@aura/design-system':
+      '@docaas/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../../packages/models
-      '@aura/validation':
+      '@docaas/validation':
         specifier: workspace:*
         version: link:../../packages/validation
       clsx:
@@ -167,16 +167,16 @@ importers:
 
   apps/patient-web:
     dependencies:
-      '@aura/design-system':
+      '@docaas/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../../packages/models
-      '@aura/validation':
+      '@docaas/validation':
         specifier: workspace:*
         version: link:../../packages/validation
       clsx:
@@ -222,13 +222,13 @@ importers:
 
   packages/auth:
     dependencies:
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../models
-      '@aura/validation':
+      '@docaas/validation':
         specifier: workspace:*
         version: link:../validation
       jose:
@@ -300,7 +300,7 @@ importers:
 
   packages/models:
     dependencies:
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../domain
       zod:
@@ -313,10 +313,10 @@ importers:
 
   packages/validation:
     dependencies:
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../models
     devDependencies:
@@ -326,7 +326,7 @@ importers:
 
   packages/video:
     dependencies:
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../domain
       livekit-server-sdk:
@@ -339,22 +339,22 @@ importers:
 
   services/api:
     dependencies:
-      '@aura/auth':
+      '@docaas/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@aura/database':
+      '@docaas/database':
         specifier: workspace:*
         version: link:../../packages/database
-      '@aura/domain':
+      '@docaas/domain':
         specifier: workspace:*
         version: link:../../packages/domain
-      '@aura/models':
+      '@docaas/models':
         specifier: workspace:*
         version: link:../../packages/models
-      '@aura/validation':
+      '@docaas/validation':
         specifier: workspace:*
         version: link:../../packages/validation
-      '@aura/video':
+      '@docaas/video':
         specifier: workspace:*
         version: link:../../packages/video
       '@fastify/cors':

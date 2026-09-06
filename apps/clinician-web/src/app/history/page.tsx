@@ -396,7 +396,7 @@ export default function EncounterHistoryPage() {
                           alignItems: 'center',
                           gap: '6px',
                           padding: '6px 14px',
-                          background: 'var(--aura-teal)',
+                          background: 'var(--docaas-teal)',
                           color: '#ffffff',
                           border: 'none',
                           borderRadius: '6px',
@@ -467,7 +467,7 @@ export default function EncounterHistoryPage() {
                 disabled={!addendumText.trim()}
                 onClick={handleSaveAddendum}
                 style={{
-                  background: addendumText.trim() ? 'var(--aura-teal)' : '#cbd5e1',
+                  background: addendumText.trim() ? 'var(--docaas-teal)' : '#cbd5e1',
                   color: '#ffffff',
                   border: 'none',
                   padding: '8px 18px',

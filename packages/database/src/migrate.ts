@@ -1,5 +1,5 @@
 /**
- * @aura/database - Raw SQL Migration Runner
+ * @docaas/database - Raw SQL Migration Runner
  * Phase 5: Production Readiness
  *
  * Applies SQL migration files in numeric order using Prisma raw execution.

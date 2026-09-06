@@ -1,5 +1,5 @@
 {
-  "name": "@aura/auth",
+  "name": "@docaas/auth",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -10,9 +10,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aura/domain": "workspace:*",
-    "@aura/models": "workspace:*",
-    "@aura/validation": "workspace:*",
+    "@docaas/domain": "workspace:*",
+    "@docaas/models": "workspace:*",
+    "@docaas/validation": "workspace:*",
     "jose": "^5.10.0",
     "otpauth": "^9.3.6"
   },

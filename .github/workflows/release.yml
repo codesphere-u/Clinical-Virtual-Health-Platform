@@ -23,15 +23,15 @@ jobs:
       matrix:
         service:
           - dockerfile: services/api/Dockerfile
-            image_name: aura-api
+            image_name: docaas-api
           - dockerfile: apps/patient-web/Dockerfile
-            image_name: aura-patient-web
+            image_name: docaas-patient-web
           - dockerfile: apps/clinician-web/Dockerfile
-            image_name: aura-clinician-web
+            image_name: docaas-clinician-web
           - dockerfile: apps/admin-web/Dockerfile
-            image_name: aura-admin-web
+            image_name: docaas-admin-web
           - dockerfile: apps/analytics-web/Dockerfile
-            image_name: aura-analytics-web
+            image_name: docaas-analytics-web
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

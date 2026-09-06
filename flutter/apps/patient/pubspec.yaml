@@ -1,5 +1,5 @@
 name: patient_mobile
-description: Aura Clinical Patient Mobile Application for iOS & Android
+description: DOCAAS Clinical Patient Mobile Application for iOS & Android
 version: 1.0.0+1
 publish_to: 'none'
 
@@ -12,13 +12,13 @@ dependencies:
     sdk: flutter
   aura_core:
     path: ../../packages/core
-  aura_design_system:
+  docaas_design_system:
     path: ../../packages/design_system
   aura_clinical:
     path: ../../packages/clinical
   aura_appointments:
     path: ../../packages/appointments
-  aura_networking:
+  docaas_networking:
     path: ../../packages/networking
 
 dev_dependencies:

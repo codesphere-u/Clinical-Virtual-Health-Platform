@@ -235,7 +235,7 @@ export default function PatientDashboard() {
           <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
             Health Snapshot & Clinical Summary
           </h3>
-          <Link href="/records" style={{ fontSize: '13px', color: 'var(--aura-teal)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Link href="/records" style={{ fontSize: '13px', color: 'var(--docaas-teal)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span>Full Health Profile</span>
             <ChevronRight size={14} />
           </Link>
@@ -272,7 +272,7 @@ export default function PatientDashboard() {
               Amlodipine 5mg (OD) • Metformin 500mg (BD)
             </p>
             <div style={{ marginTop: '10px' }}>
-              <Link href="/prescriptions" style={{ fontSize: '12px', color: 'var(--aura-teal)', fontWeight: 600, textDecoration: 'none' }}>
+              <Link href="/prescriptions" style={{ fontSize: '12px', color: 'var(--docaas-teal)', fontWeight: 600, textDecoration: 'none' }}>
                 Manage Prescriptions →
               </Link>
             </div>
@@ -306,7 +306,7 @@ export default function PatientDashboard() {
               Tested 24 Aug 2026 at Clinix Lagos
             </p>
             <div style={{ marginTop: '8px' }}>
-              <Link href="/lab-results" style={{ fontSize: '12px', color: 'var(--aura-teal)', fontWeight: 600, textDecoration: 'none' }}>
+              <Link href="/lab-results" style={{ fontSize: '12px', color: 'var(--docaas-teal)', fontWeight: 600, textDecoration: 'none' }}>
                 View Full Diagnostic Panel →
               </Link>
             </div>
@@ -377,7 +377,7 @@ export default function PatientDashboard() {
             href="/appointments"
             style={{
               fontSize: '13px',
-              color: 'var(--aura-teal)',
+              color: 'var(--docaas-teal)',
               fontWeight: 600,
               textDecoration: 'none',
               display: 'flex',
@@ -401,7 +401,7 @@ export default function PatientDashboard() {
                       <h4 style={{ fontSize: '15px', fontWeight: 700, margin: 0, color: 'var(--text-main)' }}>{c.name}</h4>
                       <ShieldCheck size={15} color="#0d746f" />
                     </div>
-                    <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--aura-teal)', marginTop: '2px' }}>{c.specialty}</div>
+                    <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--docaas-teal)', marginTop: '2px' }}>{c.specialty}</div>
                     <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{c.credentials}</div>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ export default function PatientDashboard() {
                   justifyContent: 'center',
                   gap: '8px',
                   padding: '10px',
-                  background: 'var(--aura-teal)',
+                  background: 'var(--docaas-teal)',
                   color: '#ffffff',
                   borderRadius: 'var(--radius-md)',
                   fontSize: '13px',
@@ -503,7 +503,7 @@ export default function PatientDashboard() {
                 style={{
                   flex: 1,
                   padding: '12px',
-                  background: 'var(--aura-teal)',
+                  background: 'var(--docaas-teal)',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 'var(--radius-md)',

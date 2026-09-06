@@ -145,7 +145,7 @@ export default function PrescriptionsPage() {
 
       {/* Cross-border Delivery & Allergy Alert Banner */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
-        <div style={{ background: '#f0fdf9', border: '1px solid var(--aura-teal-border)', borderRadius: 'var(--radius-lg)', padding: '16px', display: 'flex', gap: '12px' }}>
+        <div style={{ background: '#f0fdf9', border: '1px solid var(--docaas-teal-border)', borderRadius: 'var(--radius-lg)', padding: '16px', display: 'flex', gap: '12px' }}>
           <Truck size={22} color="#0d746f" style={{ flexShrink: 0 }} />
           <div>
             <div style={{ fontSize: '14px', fontWeight: 700, color: '#0f766e', marginBottom: '2px' }}>
@@ -197,7 +197,7 @@ export default function PrescriptionsPage() {
                   <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px 0', color: 'var(--text-main)' }}>
                     {rx.drugName} <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--text-muted)' }}>({rx.genericName})</span>
                   </h3>
-                  <div style={{ fontSize: '13px', color: 'var(--aura-teal)', fontWeight: 600 }}>
+                  <div style={{ fontSize: '13px', color: 'var(--docaas-teal)', fontWeight: 600 }}>
                     {rx.dosage} • {rx.frequency} ({rx.route})
                   </div>
                 </div>
@@ -216,7 +216,7 @@ export default function PrescriptionsPage() {
                         alignItems: 'center',
                         gap: '6px',
                         padding: '8px 16px',
-                        background: 'var(--aura-teal)',
+                        background: 'var(--docaas-teal)',
                         color: '#ffffff',
                         border: 'none',
                         borderRadius: 'var(--radius-md)',
@@ -330,7 +330,7 @@ export default function PrescriptionsPage() {
                   style={{
                     padding: '12px',
                     borderRadius: 'var(--radius-md)',
-                    border: refillDeliveryHub === 'lagos' ? '2px solid var(--aura-teal)' : '1px solid var(--border-light)',
+                    border: refillDeliveryHub === 'lagos' ? '2px solid var(--docaas-teal)' : '1px solid var(--border-light)',
                     background: refillDeliveryHub === 'lagos' ? '#f0fdf9' : '#ffffff',
                     fontSize: '13px',
                     fontWeight: 600,
@@ -347,7 +347,7 @@ export default function PrescriptionsPage() {
                   style={{
                     padding: '12px',
                     borderRadius: 'var(--radius-md)',
-                    border: refillDeliveryHub === 'london' ? '2px solid var(--aura-teal)' : '1px solid var(--border-light)',
+                    border: refillDeliveryHub === 'london' ? '2px solid var(--docaas-teal)' : '1px solid var(--border-light)',
                     background: refillDeliveryHub === 'london' ? '#f0fdf9' : '#ffffff',
                     fontSize: '13px',
                     fontWeight: 600,
@@ -367,7 +367,7 @@ export default function PrescriptionsPage() {
                 style={{
                   flex: 1,
                   padding: '12px',
-                  background: 'var(--aura-teal)',
+                  background: 'var(--docaas-teal)',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 'var(--radius-md)',

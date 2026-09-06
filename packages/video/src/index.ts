@@ -1,9 +1,9 @@
 /**
- * @aura/video - Provider-Agnostic Telemedicine Video Gateway
+ * @docaas/video - Provider-Agnostic Telemedicine Video Gateway
  * Next-Generation Clinical & Virtual Health Platform
  */
 
-import { UserRole } from '@aura/domain';
+import { UserRole } from '@docaas/domain';
 
 // ==========================================
 // 1. Video Gateway Contracts

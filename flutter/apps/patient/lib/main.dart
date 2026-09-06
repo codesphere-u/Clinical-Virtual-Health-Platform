@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aura_design_system/aura_design_system.dart';
+import 'package:docaas_design_system/docaas_design_system.dart';
 import 'package:aura_appointments/appointments.dart';
 
 void main() {
@@ -12,9 +12,9 @@ class PatientApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aura Patient Care',
+      title: 'DOCAAS Patient Care',
       debugShowCheckedModeBanner: false,
-      theme: AuraTheme.lightTheme,
+      theme: DocaasTheme.lightTheme,
       home: const PatientRootNavigation(),
     );
   }
@@ -48,31 +48,31 @@ class _PatientRootNavigationState extends State<PatientRootNavigation> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (idx) => setState(() => _currentIndex = idx),
-        indicatorColor: AuraColors.tealLight,
+        indicatorColor: DocaasColors.tealLight,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.home, color: DocaasColors.tealPrimary),
             label: 'Home',
           ),
           NavigationDestination(
             icon: Icon(Icons.calendar_today_outlined),
-            selectedIcon: Icon(Icons.calendar_today, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.calendar_today, color: DocaasColors.tealPrimary),
             label: 'Appointments',
           ),
           NavigationDestination(
             icon: Icon(Icons.description_outlined),
-            selectedIcon: Icon(Icons.description, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.description, color: DocaasColors.tealPrimary),
             label: 'Records',
           ),
           NavigationDestination(
             icon: Icon(Icons.chat_bubble_outline),
-            selectedIcon: Icon(Icons.chat_bubble, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.chat_bubble, color: DocaasColors.tealPrimary),
             label: 'Messages',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.person, color: DocaasColors.tealPrimary),
             label: 'Profile',
           ),
         ],
@@ -103,8 +103,8 @@ class PatientHomeScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text('Welcome back,', style: TextStyle(fontSize: 12, color: AuraColors.slateTextSecondary)),
-            Text('Olumide Babalola', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AuraColors.slateTextPrimary)),
+            Text('Welcome back,', style: TextStyle(fontSize: 12, color: DocaasColors.slateTextSecondary)),
+            Text('Olumide Babalola', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: DocaasColors.slateTextPrimary)),
           ],
         ),
         actions: [
@@ -112,16 +112,16 @@ class PatientHomeScreen extends StatelessWidget {
             margin: const EdgeInsets.only(right: 12),
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: AuraColors.amberBackground,
+              color: DocaasColors.amberBackground,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AuraColors.amberWarning.withValues(alpha: 0.3)),
+              border: Border.all(color: DocaasColors.amberWarning.withValues(alpha: 0.3)),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: const [
-                Icon(Icons.phone_in_talk, size: 14, color: AuraColors.amberWarning),
+                Icon(Icons.phone_in_talk, size: 14, color: DocaasColors.amberWarning),
                 SizedBox(width: 4),
-                Text('ER: 112', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AuraColors.amberWarning)),
+                Text('ER: 112', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: DocaasColors.amberWarning)),
               ],
             ),
           ),
@@ -134,7 +134,7 @@ class PatientHomeScreen extends StatelessWidget {
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              side: const BorderSide(color: AuraColors.tealPrimary, width: 1.5),
+              side: const BorderSide(color: DocaasColors.tealPrimary, width: 1.5),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -147,12 +147,12 @@ class PatientHomeScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: AuraColors.tealLight,
+                          color: DocaasColors.tealLight,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
                           'Next Video Consultation',
-                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AuraColors.tealPrimary),
+                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: DocaasColors.tealPrimary),
                         ),
                       ),
                       const Text('Today, 14:00', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
@@ -163,15 +163,15 @@ class PatientHomeScreen extends StatelessWidget {
                     children: [
                       const CircleAvatar(
                         radius: 20,
-                        backgroundColor: AuraColors.tealLight,
-                        child: Icon(Icons.medical_services_outlined, color: AuraColors.tealPrimary),
+                        backgroundColor: DocaasColors.tealLight,
+                        child: Icon(Icons.medical_services_outlined, color: DocaasColors.tealPrimary),
                       ),
                       const SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text('Dr. Elizabeth Adeyemi', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                          Text('Cardiology • GMC #7654321 (UK)', style: TextStyle(color: AuraColors.slateTextSecondary, fontSize: 12)),
+                          Text('Cardiology • GMC #7654321 (UK)', style: TextStyle(color: DocaasColors.slateTextSecondary, fontSize: 12)),
                         ],
                       ),
                     ],
@@ -181,7 +181,7 @@ class PatientHomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AuraColors.tealPrimary,
+                        backgroundColor: DocaasColors.tealPrimary,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -203,12 +203,12 @@ class PatientHomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AuraColors.slateBorder),
+              border: Border.all(color: DocaasColors.slateBorder),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Recent Vitals', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AuraColors.slateTextPrimary)),
+                const Text('Recent Vitals', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: DocaasColors.slateTextPrimary)),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -239,10 +239,10 @@ class _VitalItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(label, style: const TextStyle(fontSize: 11, color: AuraColors.slateTextSecondary)),
+        Text(label, style: const TextStyle(fontSize: 11, color: DocaasColors.slateTextSecondary)),
         const SizedBox(height: 4),
-        Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isWarning ? AuraColors.roseCritical : AuraColors.tealPrimary)),
-        Text(unit, style: const TextStyle(fontSize: 10, color: AuraColors.slateTextSecondary)),
+        Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isWarning ? DocaasColors.roseCritical : DocaasColors.tealPrimary)),
+        Text(unit, style: const TextStyle(fontSize: 10, color: DocaasColors.slateTextSecondary)),
       ],
     );
   }
@@ -296,10 +296,10 @@ class PatientAppointmentsScreen extends StatelessWidget {
                   const SnackBar(content: Text('Opening Slot Booking Engine...')),
                 );
               },
-              icon: const Icon(Icons.add_circle_outline, color: AuraColors.tealPrimary),
-              label: const Text('Book New Telemedicine Consultation', style: TextStyle(color: AuraColors.tealPrimary)),
+              icon: const Icon(Icons.add_circle_outline, color: DocaasColors.tealPrimary),
+              label: const Text('Book New Telemedicine Consultation', style: TextStyle(color: DocaasColors.tealPrimary)),
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: AuraColors.tealPrimary),
+                side: const BorderSide(color: DocaasColors.tealPrimary),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
@@ -330,19 +330,19 @@ class PatientRecordsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AuraColors.roseBackground,
+              color: DocaasColors.roseBackground,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AuraColors.roseCritical.withValues(alpha: 0.3)),
+              border: Border.all(color: DocaasColors.roseCritical.withValues(alpha: 0.3)),
             ),
             child: Row(
               children: [
-                const Icon(Icons.warning_amber_rounded, color: AuraColors.roseCritical),
+                const Icon(Icons.warning_amber_rounded, color: DocaasColors.roseCritical),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
-                      Text('DOCUMENTED CLINICAL ALLERGY', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AuraColors.roseCritical)),
+                      Text('DOCUMENTED CLINICAL ALLERGY', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: DocaasColors.roseCritical)),
                       Text('Penicillin (Life-Threatening) • Sulfa Drugs (Moderate)', style: TextStyle(fontSize: 12, color: Colors.black87)),
                     ],
                   ),
@@ -356,7 +356,7 @@ class PatientRecordsScreen extends StatelessWidget {
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              side: const BorderSide(color: AuraColors.slateBorder),
+              side: const BorderSide(color: DocaasColors.slateBorder),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -368,8 +368,8 @@ class PatientRecordsScreen extends StatelessWidget {
                     children: const [
                       Text('Active E-Prescriptions', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
                       Chip(
-                        label: Text('SHA-256 SEALED', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: AuraColors.emeraldVerified)),
-                        backgroundColor: AuraColors.emeraldBackground,
+                        label: Text('SHA-256 SEALED', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: DocaasColors.emeraldVerified)),
+                        backgroundColor: DocaasColors.emeraldBackground,
                         visualDensity: VisualDensity.compact,
                       ),
                     ],
@@ -378,13 +378,13 @@ class PatientRecordsScreen extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const CircleAvatar(
-                      backgroundColor: AuraColors.tealLight,
-                      child: Icon(Icons.medication, color: AuraColors.tealPrimary),
+                      backgroundColor: DocaasColors.tealLight,
+                      child: Icon(Icons.medication, color: DocaasColors.tealPrimary),
                     ),
                     title: const Text('Amlodipine Besylate 10mg', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                     subtitle: const Text('1 tablet once daily • 30 days supply\nPrescription: RX-2026-88491', style: TextStyle(fontSize: 12)),
                     trailing: IconButton(
-                      icon: const Icon(Icons.qr_code, color: AuraColors.tealPrimary),
+                      icon: const Icon(Icons.qr_code, color: DocaasColors.tealPrimary),
                       onPressed: () {},
                     ),
                   ),
@@ -398,7 +398,7 @@ class PatientRecordsScreen extends StatelessWidget {
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              side: const BorderSide(color: AuraColors.slateBorder),
+              side: const BorderSide(color: DocaasColors.slateBorder),
             ),
             child: const Padding(
               padding: EdgeInsets.all(16),
@@ -409,7 +409,7 @@ class PatientRecordsScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   Text('• LAB-2026-10492: Lipid Profile & Serum Creatinine (Resulted: Normal)', style: TextStyle(fontSize: 13)),
                   SizedBox(height: 4),
-                  Text('• Ordered by Dr. Elizabeth Adeyemi on 03/09/2026', style: TextStyle(fontSize: 11, color: AuraColors.slateTextSecondary)),
+                  Text('• Ordered by Dr. Elizabeth Adeyemi on 03/09/2026', style: TextStyle(fontSize: 11, color: DocaasColors.slateTextSecondary)),
                 ],
               ),
             ),
@@ -438,23 +438,23 @@ class PatientMessagesScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AuraColors.tealLight,
+              color: DocaasColors.tealLight,
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Text(
               'End-to-end encrypted messaging with your designated clinical team under UK GDPR & NDPA 2023 regulations.',
-              style: TextStyle(fontSize: 12, color: AuraColors.tealPrimary),
+              style: TextStyle(fontSize: 12, color: DocaasColors.tealPrimary),
             ),
           ),
           const SizedBox(height: 16),
           ListTile(
             leading: const CircleAvatar(
-              backgroundColor: AuraColors.tealLight,
-              child: Text('EA', style: TextStyle(fontWeight: FontWeight.bold, color: AuraColors.tealPrimary)),
+              backgroundColor: DocaasColors.tealLight,
+              child: Text('EA', style: TextStyle(fontWeight: FontWeight.bold, color: DocaasColors.tealPrimary)),
             ),
             title: const Text('Dr. Elizabeth Adeyemi', style: TextStyle(fontWeight: FontWeight.bold)),
             subtitle: const Text('Your lab results have been reviewed. Looking forward to our call.', maxLines: 1),
-            trailing: const Text('10:45 AM', style: TextStyle(fontSize: 11, color: AuraColors.slateTextSecondary)),
+            trailing: const Text('10:45 AM', style: TextStyle(fontSize: 11, color: DocaasColors.slateTextSecondary)),
           ),
         ],
       ),
@@ -482,32 +482,32 @@ class PatientProfileScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 36,
-                  backgroundColor: AuraColors.tealLight,
-                  child: Text('OB', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AuraColors.tealPrimary)),
+                  backgroundColor: DocaasColors.tealLight,
+                  child: Text('OB', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: DocaasColors.tealPrimary)),
                 ),
                 SizedBox(height: 10),
                 Text('Olumide Babalola', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text('MRN: CVH-2026-0001 • Lagos, Nigeria', style: TextStyle(fontSize: 12, color: AuraColors.slateTextSecondary)),
+                Text('MRN: CVH-2026-0001 • Lagos, Nigeria', style: TextStyle(fontSize: 12, color: DocaasColors.slateTextSecondary)),
               ],
             ),
           ),
           SizedBox(height: 24),
           ListTile(
-            leading: Icon(Icons.verified_user, color: AuraColors.emeraldVerified),
+            leading: Icon(Icons.verified_user, color: DocaasColors.emeraldVerified),
             title: Text('National Identity (NIN/BVN)'),
             subtitle: Text('Verified via NIMC & Smile ID (Phase 2 KYC)'),
-            trailing: Icon(Icons.check_circle, color: AuraColors.emeraldVerified, size: 20),
+            trailing: Icon(Icons.check_circle, color: DocaasColors.emeraldVerified, size: 20),
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.security, color: AuraColors.tealPrimary),
+            leading: Icon(Icons.security, color: DocaasColors.tealPrimary),
             title: Text('Dual-Jurisdiction Data Consent'),
             subtitle: Text('Nigeria NDPA 2023 & UK GDPR Cross-Border Active'),
             trailing: Icon(Icons.chevron_right),
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.emergency, color: AuraColors.roseCritical),
+            leading: Icon(Icons.emergency, color: DocaasColors.roseCritical),
             title: Text('Emergency Dispatch Contacts'),
             subtitle: Text('Dial 112 (Nigeria) / 999 (United Kingdom)'),
           ),
@@ -550,22 +550,22 @@ class _WaitingRoomBottomSheetState extends State<WaitingRoomBottomSheet> {
           const SizedBox(height: 20),
           const Text('Virtual Waiting Room', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          const Text('Consultation with Dr. Elizabeth Adeyemi', style: TextStyle(color: AuraColors.slateTextSecondary, fontSize: 13)),
+          const Text('Consultation with Dr. Elizabeth Adeyemi', style: TextStyle(color: DocaasColors.slateTextSecondary, fontSize: 13)),
           const SizedBox(height: 24),
 
           // Pulsing Queue Status
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: AuraColors.tealLight,
+              color: DocaasColors.tealLight,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.wifi, color: AuraColors.tealPrimary, size: 20),
+                const Icon(Icons.wifi, color: DocaasColors.tealPrimary, size: 20),
                 const SizedBox(width: 8),
-                Text('Heartbeat Active • Connection: Excellent (${_secondsWaiting}s)', style: const TextStyle(fontWeight: FontWeight.w600, color: AuraColors.tealPrimary, fontSize: 13)),
+                Text('Heartbeat Active • Connection: Excellent (${_secondsWaiting}s)', style: const TextStyle(fontWeight: FontWeight.w600, color: DocaasColors.tealPrimary, fontSize: 13)),
               ],
             ),
           ),
@@ -575,19 +575,19 @@ class _WaitingRoomBottomSheetState extends State<WaitingRoomBottomSheet> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AuraColors.emeraldBackground,
+                color: DocaasColors.emeraldBackground,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AuraColors.emeraldVerified.withValues(alpha: 0.3)),
+                border: Border.all(color: DocaasColors.emeraldVerified.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.check_circle_outline, color: AuraColors.emeraldVerified, size: 28),
+                  const Icon(Icons.check_circle_outline, color: DocaasColors.emeraldVerified, size: 28),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
-                        Text('Clinician is Ready!', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AuraColors.emeraldVerified)),
+                        Text('Clinician is Ready!', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: DocaasColors.emeraldVerified)),
                         Text('Dr. Adeyemi has opened the WebRTC encrypted room.', style: TextStyle(fontSize: 12)),
                       ],
                     ),
@@ -600,7 +600,7 @@ class _WaitingRoomBottomSheetState extends State<WaitingRoomBottomSheet> {
               width: double.infinity,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AuraColors.emeraldVerified,
+                  backgroundColor: DocaasColors.emeraldVerified,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

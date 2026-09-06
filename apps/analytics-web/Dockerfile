@@ -19,8 +19,8 @@ COPY tsconfig.base.json ./
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm --filter @aura/design-system build || true
-RUN pnpm --filter @aura/analytics-web build
+RUN pnpm --filter @docaas/design-system build || true
+RUN pnpm --filter @docaas/analytics-web build
 
 # ─── Stage 3: Runner ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -30,13 +30,13 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3004
 
-RUN addgroup -S aura && adduser -S aura -G aura
+RUN addgroup -S docaas && adduser -S docaas -G docaas
 
 COPY --from=builder /repo/apps/analytics-web/.next/standalone ./
 COPY --from=builder /repo/apps/analytics-web/.next/static ./.next/static
 COPY --from=builder /repo/apps/analytics-web/public ./public
 
-USER aura
+USER docaas
 
 EXPOSE 3004
 

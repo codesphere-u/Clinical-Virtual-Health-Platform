@@ -1,5 +1,5 @@
 {
-  "name": "@aura/clinician-web",
+  "name": "@docaas/clinician-web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -10,10 +10,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@aura/design-system": "workspace:*",
-    "@aura/domain": "workspace:*",
-    "@aura/models": "workspace:*",
-    "@aura/validation": "workspace:*",
+    "@docaas/design-system": "workspace:*",
+    "@docaas/domain": "workspace:*",
+    "@docaas/models": "workspace:*",
+    "@docaas/validation": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",

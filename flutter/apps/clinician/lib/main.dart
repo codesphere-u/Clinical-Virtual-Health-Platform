@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aura_design_system/aura_design_system.dart';
+import 'package:docaas_design_system/docaas_design_system.dart';
 
 void main() {
   runApp(const ClinicianApp());
@@ -11,9 +11,9 @@ class ClinicianApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aura Clinician Mobile',
+      title: 'DOCAAS Clinician Mobile',
       debugShowCheckedModeBanner: false,
-      theme: AuraTheme.lightTheme,
+      theme: DocaasTheme.lightTheme,
       home: const ClinicianRootNavigation(),
     );
   }
@@ -45,31 +45,31 @@ class _ClinicianRootNavigationState extends State<ClinicianRootNavigation> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (idx) => setState(() => _currentIndex = idx),
-        indicatorColor: AuraColors.tealLight,
+        indicatorColor: DocaasColors.tealLight,
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.dashboard, color: DocaasColors.tealPrimary),
             label: 'Today',
           ),
           NavigationDestination(
             icon: Icon(Icons.people_alt_outlined),
-            selectedIcon: Icon(Icons.people_alt, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.people_alt, color: DocaasColors.tealPrimary),
             label: 'Patients',
           ),
           NavigationDestination(
             icon: Icon(Icons.meeting_room_outlined),
-            selectedIcon: Icon(Icons.meeting_room, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.meeting_room, color: DocaasColors.tealPrimary),
             label: 'Waiting (1)',
           ),
           NavigationDestination(
             icon: Icon(Icons.chat_bubble_outline),
-            selectedIcon: Icon(Icons.chat_bubble, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.chat_bubble, color: DocaasColors.tealPrimary),
             label: 'Messages',
           ),
           NavigationDestination(
             icon: Icon(Icons.verified_user_outlined),
-            selectedIcon: Icon(Icons.verified_user, color: AuraColors.tealPrimary),
+            selectedIcon: Icon(Icons.verified_user, color: DocaasColors.tealPrimary),
             label: 'Passport',
           ),
         ],
@@ -89,7 +89,7 @@ class ClinicianTodayScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Text('Dr. Elizabeth Adeyemi', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            Text('Cardiology • GMC-7654321', style: TextStyle(fontSize: 11, color: AuraColors.slateTextSecondary)),
+            Text('Cardiology • GMC-7654321', style: TextStyle(fontSize: 11, color: DocaasColors.slateTextSecondary)),
           ],
         ),
         actions: [
@@ -97,11 +97,11 @@ class ClinicianTodayScreen extends StatelessWidget {
             margin: const EdgeInsets.only(right: 16),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: AuraColors.emeraldBackground,
+              color: DocaasColors.emeraldBackground,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AuraColors.emeraldVerified),
+              border: Border.all(color: DocaasColors.emeraldVerified),
             ),
-            child: const Text('Passport Verified', style: TextStyle(fontSize: 10, color: AuraColors.emeraldVerified, fontWeight: FontWeight.bold)),
+            child: const Text('Passport Verified', style: TextStyle(fontSize: 10, color: DocaasColors.emeraldVerified, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -110,29 +110,29 @@ class ClinicianTodayScreen extends StatelessWidget {
         children: [
           // Waiting Patient Banner
           Card(
-            color: AuraColors.amberBackground,
+            color: DocaasColors.amberBackground,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
-              side: const BorderSide(color: AuraColors.amberWarning),
+              side: const BorderSide(color: DocaasColors.amberWarning),
             ),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const Icon(Icons.person_pin_circle_outlined, color: AuraColors.amberWarning, size: 32),
+                  const Icon(Icons.person_pin_circle_outlined, color: DocaasColors.amberWarning, size: 32),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text('1 Patient in Waiting Room', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                        Text('Olumide Babalola (MRN: CVH-2026-0001) • Waiting 4m', style: TextStyle(fontSize: 12, color: AuraColors.slateTextSecondary)),
+                        Text('Olumide Babalola (MRN: CVH-2026-0001) • Waiting 4m', style: TextStyle(fontSize: 12, color: DocaasColors.slateTextSecondary)),
                       ],
                     ),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AuraColors.tealPrimary,
+                      backgroundColor: DocaasColors.tealPrimary,
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {},
@@ -156,7 +156,7 @@ class PlaceholderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(child: Text(title, style: const TextStyle(color: AuraColors.slateTextSecondary))),
+      body: Center(child: Text(title, style: const TextStyle(color: DocaasColors.slateTextSecondary))),
     );
   }
 }

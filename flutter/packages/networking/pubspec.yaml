@@ -1,5 +1,5 @@
-name: aura_networking
-description: Resilient HTTP client with correlation IDs and idempotency headers for Aura Clinical
+name: docaas_networking
+description: Resilient HTTP client with correlation IDs and idempotency headers for DOCAAS Clinical
 version: 1.0.0
 publish_to: 'none'
 

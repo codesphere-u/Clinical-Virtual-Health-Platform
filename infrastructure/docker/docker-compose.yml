@@ -3,7 +3,7 @@ version: '3.8'
 networks:
   docaas_network:
     driver: bridge
-    name: docaas_clinical_network
+    name: docaas_network
 
 services:
   # ── Infrastructure Services ────────────────────────────────────────────────
@@ -49,19 +49,19 @@ services:
   # MinIO Encrypted Medical Document & Imaging Vault (S3-Compatible)
   minio:
     image: minio/minio:latest
-    container_name: aura_minio
+    container_name: docaas_minio
     restart: unless-stopped
     command: server /data --console-address ':9001'
     environment:
-      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minio_aura_admin}
-      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minio_aura_secret_dev}
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minio_docaas_admin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minio_docaas_secret_dev}
     ports:
       - '9000:9000'
       - '9001:9001'
     volumes:
       - minio_data:/data
     networks:
-      - aura_network
+      - docaas_network
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/ready']
       interval: 10s
@@ -71,15 +71,15 @@ services:
   # LiveKit WebRTC SFU — Nigeria (Lagos) + UK (London) Clusters
   livekit:
     image: livekit/livekit-server:latest
-    container_name: aura_livekit
+    container_name: docaas_livekit
     restart: unless-stopped
-    command: --dev --keys '${LIVEKIT_API_KEY:-devkey}:${LIVEKIT_API_SECRET:-devkey_secret_minimum_32_chars_____}'
+    command: ["--dev", "--keys", "${LIVEKIT_API_KEY:-devkey}: ${LIVEKIT_API_SECRET:-devkey_secret_minimum_32_chars_____}"]
     ports:
       - '7880:7880'
       - '7881:7881'
       - '7882:7882/udp'
     networks:
-      - aura_network
+      - docaas_network
 
   # ── Database Migration Runner (runs once, then exits) ─────────────────────
   db-migrate:
@@ -87,40 +87,40 @@ services:
       context: ../..
       dockerfile: services/api/Dockerfile
       target: builder
-    container_name: aura_db_migrate
+    container_name: docaas_db_migrate
     command: node -e "require('./packages/database/dist/migrate.js')"
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql://aura_admin:aura_secure_password_dev@aura_postgres:5432/clinical_platform}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://docaas_admin:docaas_secure_password_dev@docaas_postgres:5432/clinical_platform}
     depends_on:
       postgres:
         condition: service_healthy
     networks:
-      - aura_network
+      - docaas_network
     restart: 'no'
 
   # ── Application Services ───────────────────────────────────────────────────
 
-  # Aura Clinical API (Fastify)
+  # DOCAAS Clinical API (Fastify)
   api:
     build:
       context: ../..
       dockerfile: services/api/Dockerfile
-    container_name: aura_api
+    container_name: docaas_api
     restart: unless-stopped
     environment:
       NODE_ENV: production
       PORT: 3001
-      DATABASE_URL: ${DATABASE_URL:-postgresql://aura_admin:aura_secure_password_dev@aura_postgres:5432/clinical_platform}
-      REDIS_URL: ${REDIS_URL:-redis://aura_redis:6379}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://docaas_admin:docaas_secure_password_dev@docaas_postgres:5432/clinical_platform}
+      REDIS_URL: ${REDIS_URL:-redis://docaas_redis:6379}
       JWT_SECRET: ${JWT_SECRET:-dev_jwt_secret_change_in_production_min_64}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev_refresh_secret_change_in_production_min_64}
-      LIVEKIT_URL: ${LIVEKIT_URL:-ws://aura_livekit:7880}
+      LIVEKIT_URL: ${LIVEKIT_URL:-ws://docaas_livekit:7880}
       LIVEKIT_API_KEY: ${LIVEKIT_API_KEY:-devkey}
       LIVEKIT_API_SECRET: ${LIVEKIT_API_SECRET:-devkey_secret_minimum_32_chars_____}
-      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-aura_minio}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-docaas_minio}
       MINIO_PORT: ${MINIO_PORT:-9000}
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minio_aura_admin}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minio_aura_secret_dev}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minio_docaas_admin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minio_docaas_secret_dev}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:3002,http://localhost:3003,http://localhost:3004}
     ports:
       - '3001:3001'
@@ -132,7 +132,7 @@ services:
       db-migrate:
         condition: service_completed_successfully
     networks:
-      - aura_network
+      - docaas_network
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://localhost:3001/health/ready']
       interval: 10s
@@ -144,7 +144,7 @@ services:
     build:
       context: ../..
       dockerfile: apps/patient-web/Dockerfile
-    container_name: aura_patient_web
+    container_name: docaas_patient_web
     restart: unless-stopped
     environment:
       PORT: 3000
@@ -156,14 +156,14 @@ services:
       api:
         condition: service_healthy
     networks:
-      - aura_network
+      - docaas_network
 
   # Clinician Workstation (Next.js 15 — Port 3002)
   clinician-web:
     build:
       context: ../..
       dockerfile: apps/clinician-web/Dockerfile
-    container_name: aura_clinician_web
+    container_name: docaas_clinician_web
     restart: unless-stopped
     environment:
       PORT: 3002
@@ -175,14 +175,14 @@ services:
       api:
         condition: service_healthy
     networks:
-      - aura_network
+      - docaas_network
 
   # Admin Command Center (Next.js 15 — Port 3003)
   admin-web:
     build:
       context: ../..
       dockerfile: apps/admin-web/Dockerfile
-    container_name: aura_admin_web
+    container_name: docaas_admin_web
     restart: unless-stopped
     environment:
       PORT: 3003
@@ -193,14 +193,14 @@ services:
       api:
         condition: service_healthy
     networks:
-      - aura_network
+      - docaas_network
 
   # Clinical Analytics Dashboard (Next.js 15 — Port 3004)
   analytics-web:
     build:
       context: ../..
       dockerfile: apps/analytics-web/Dockerfile
-    container_name: aura_analytics_web
+    container_name: docaas_analytics_web
     restart: unless-stopped
     environment:
       PORT: 3004
@@ -211,12 +211,13 @@ services:
       api:
         condition: service_healthy
     networks:
-      - aura_network
+      - docaas_network
 
 volumes:
   postgres_data:
-    name: aura_postgres_data
+    name: docaas_postgres_data
   redis_data:
-    name: aura_redis_data
+    name: docaas_redis_data
   minio_data:
-    name: aura_minio_data
+    name: docaas_minio_data
+

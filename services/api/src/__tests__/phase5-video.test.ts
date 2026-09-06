@@ -1,10 +1,10 @@
 /**
- * @aura/api-service - Phase 5 Video Consultation Token & Room Termination Integration Tests
+ * @docaas/api-service - Phase 5 Video Consultation Token & Room Termination Integration Tests
  */
 
 import { buildServer } from '../server.js';
 import { appointmentsDb } from '../routes/appointments.js';
-import { AppointmentStatus, EncounterType } from '@aura/domain';
+import { AppointmentStatus, EncounterType } from '@docaas/domain';
 
 async function runVideoTests() {
   console.log('🧪 Starting Phase 5 Video Token & Room Management Tests...\n');

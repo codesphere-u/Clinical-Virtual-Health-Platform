@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Production Fastify Core Clinical API Server
+ * @docaas/api-service - Production Fastify Core Clinical API Server
  * Next-Generation Clinical & Virtual Health Platform
  * Phase 3-4: Core Sprint & Logic Construction; System Integration & Optimization
  * Phase 5: Production Readiness, DevOps & Clinical Analytics

@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        aura: {
+        docaas: {
           teal: {
             DEFAULT: '#0D746F',
             50: '#F0FDFA',

@@ -1,5 +1,5 @@
 /**
- * @aura/api-service - Video Consultation Token Route
+ * @docaas/api-service - Video Consultation Token Route
  * Phase 5: Production Readiness
  *
  * POST /api/v1/video/token
@@ -11,8 +11,8 @@
 
 import { FastifyPluginAsync } from 'fastify';
 import { z } from 'zod';
-import { AppointmentStatus, UserRole, Jurisdiction } from '@aura/domain';
-import { LiveKitVideoProvider } from '@aura/video';
+import { AppointmentStatus, UserRole, Jurisdiction } from '@docaas/domain';
+import { LiveKitVideoProvider } from '@docaas/video';
 import { auditVault } from '../services/audit-vault.js';
 import { appointmentsDb } from './appointments.js';
 
