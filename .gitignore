@@ -41,3 +41,8 @@ pubspec.lock
 # Prisma
 packages/database/prisma/*.db
 packages/database/prisma/*.db-journal
+
+# Confidential legal documents
+contract & NDA/
+*Contract*.pdf
+*NDA*.pdf
