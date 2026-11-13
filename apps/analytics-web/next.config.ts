@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  ...(process.env.STANDALONE_BUILD === 'true' ? { output: 'standalone' } : {}),
+  output: 'standalone',
   transpilePackages: ['@docaas/design-system'],
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts'],

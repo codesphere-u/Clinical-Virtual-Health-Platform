@@ -1,0 +1,17 @@
+node_modules
+.pnpm-store
+.next
+dist
+build
+out
+.turbo
+.git
+.gitignore
+flutter
+*.log
+.DS_Store
+.env
+.env.*
+contract & NDA
+*Contract*.pdf
+*NDA*.pdf

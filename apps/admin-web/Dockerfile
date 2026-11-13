@@ -1,11 +1,15 @@
 # ─── Stage 1: Install dependencies ──────────────────────────────────────────
 FROM node:20-alpine AS deps
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
 WORKDIR /repo
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 COPY packages/ packages/
+COPY apps/patient-web/package.json apps/patient-web/
+COPY apps/clinician-web/package.json apps/clinician-web/
 COPY apps/admin-web/package.json apps/admin-web/
+COPY apps/analytics-web/package.json apps/analytics-web/
+COPY services/api/package.json services/api/
 
 RUN pnpm install --frozen-lockfile
 
@@ -19,8 +23,8 @@ COPY tsconfig.base.json ./
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm --filter @docaas/design-system build || true
-RUN pnpm --filter @docaas/admin-web build
+RUN mkdir -p apps/admin-web/public
+RUN pnpm --filter @docaas/admin-web... build
 
 # ─── Stage 3: Runner ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -33,8 +37,8 @@ ENV PORT=3003
 RUN addgroup -S docaas && adduser -S docaas -G docaas
 
 COPY --from=builder /repo/apps/admin-web/.next/standalone ./
-COPY --from=builder /repo/apps/admin-web/.next/static ./.next/static
-COPY --from=builder /repo/apps/admin-web/public ./public
+COPY --from=builder /repo/apps/admin-web/.next/static ./apps/admin-web/.next/static
+COPY --from=builder /repo/apps/admin-web/public ./apps/admin-web/public
 
 USER docaas
 

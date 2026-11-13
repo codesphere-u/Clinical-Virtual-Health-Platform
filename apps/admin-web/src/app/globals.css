@@ -602,6 +602,8 @@ html, body {
 
 .admin-nav-tab:hover:not(.active) {
   color: #0f172a;
+}
+
 .admin-table-row:hover {
   background-color: #f8fafc;
 }

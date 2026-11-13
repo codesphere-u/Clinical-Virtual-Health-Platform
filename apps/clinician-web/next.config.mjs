@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@aura/design-system', '@aura/domain', '@aura/models', '@aura/validation'],
+  output: 'standalone',
+  transpilePackages: ['@docaas/design-system', '@docaas/domain', '@docaas/models', '@docaas/validation'],
   reactStrictMode: true,
 };
 
