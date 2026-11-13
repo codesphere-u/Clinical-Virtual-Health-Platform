@@ -73,16 +73,45 @@ async function buildServer() {
   // ==========================================
   // Health Diagnostics (ADR-012)
   // ==========================================
-  fastify.get('/health/live', async () => ({ status: 'ok', timestamp: new Date().toISOString() }));
-
-  fastify.get('/health/ready', async () => ({
+  const liveHandler = async () => ({ status: 'ok', timestamp: new Date().toISOString() });
+  const readyHandler = async () => ({
     status: 'ready',
     database: 'healthy',
     redis: 'healthy',
     videoGateway: 'ready',
     auditVaultChain: auditVault.verifyIntegrity().isValid ? 'intact' : 'degraded',
     timestamp: new Date().toISOString(),
-  }));
+  });
+
+  fastify.get('/health/live', { exposeHeadRoute: false }, liveHandler);
+  fastify.head('/health/live', async (_req, reply) => reply.code(200).send());
+
+  fastify.get('/health/ready', { exposeHeadRoute: false }, readyHandler);
+  fastify.head('/health/ready', async (_req, reply) => reply.code(200).send());
+
+  // ==========================================
+  // Global Error Handler (Sanitized in Production)
+  // ==========================================
+  fastify.setErrorHandler((error, request, reply) => {
+    const fastifyErr = error as Error & { statusCode?: number };
+    const statusCode =
+      typeof fastifyErr.statusCode === 'number' && fastifyErr.statusCode >= 400
+        ? fastifyErr.statusCode
+        : 500;
+    const correlationId = reply.getHeader('x-correlation-id');
+
+    if (statusCode >= 500) {
+      request.log.error({ err: error, correlationId }, 'Unhandled clinical API error');
+    }
+
+    const isProd500 = statusCode >= 500 && process.env.NODE_ENV === 'production';
+    return reply.status(statusCode).send({
+      statusCode,
+      error: statusCode >= 500 ? 'Internal Server Error' : fastifyErr.name || 'Request Error',
+      message: isProd500 ? 'An unexpected internal error occurred.' : fastifyErr.message,
+      ...(correlationId ? { correlationId } : {}),
+    });
+  });
 
   // ==========================================
   // Phase 2: Auth & Biometric Identity Routes
@@ -207,8 +236,25 @@ const isMain = Boolean(
 if (isMain && !process.env.SKIP_SERVER_LISTEN) {
   const PORT = Number(process.env.PORT) || 4000;
   buildServer()
-    .then((server) => server.listen({ port: PORT, host: '0.0.0.0' }))
-    .then((address) => {
+    .then(async (server) => {
+      let shuttingDown = false;
+      const gracefulShutdown = async (signal: string) => {
+        if (shuttingDown) return;
+        shuttingDown = true;
+        server.log.info({ signal }, 'Received shutdown signal; closing Fastify server');
+        try {
+          await server.close();
+          process.exit(0);
+        } catch (err) {
+          server.log.error({ err }, 'Error during graceful shutdown');
+          process.exit(1);
+        }
+      };
+
+      process.once('SIGTERM', () => void gracefulShutdown('SIGTERM'));
+      process.once('SIGINT', () => void gracefulShutdown('SIGINT'));
+
+      const address = await server.listen({ port: PORT, host: '0.0.0.0' });
       console.log(`🚀 Clinical Platform Fastify Server listening on ${address}`);
     })
     .catch((err) => {

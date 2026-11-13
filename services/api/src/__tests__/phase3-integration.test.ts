@@ -13,6 +13,7 @@
 
 process.env.SKIP_SERVER_LISTEN = 'true';
 import { buildServer } from '../server.js';
+import { auditVault } from '../services/audit-vault.js';
 import assert from 'node:assert/strict';
 
 async function runTests() {
@@ -22,12 +23,19 @@ async function runTests() {
   try {
     // Test 1: Health Diagnostic Probe
     console.log('Test 1: Health Check & System Readiness (ADR-012)...');
+    const liveHeadRes = await app.inject({ method: 'HEAD', url: '/health/live' });
+    assert.equal(liveHeadRes.statusCode, 200);
+    assert.equal(liveHeadRes.body, '');
+    const readyHeadRes = await app.inject({ method: 'HEAD', url: '/health/ready' });
+    assert.equal(readyHeadRes.statusCode, 200);
+    assert.equal(readyHeadRes.body, '');
+
     const healthRes = await app.inject({ method: 'GET', url: '/health/ready' });
     assert.equal(healthRes.statusCode, 200);
     const healthJson = healthRes.json();
     assert.equal(healthJson.status, 'ready');
     assert.equal(healthJson.auditVaultChain, 'intact');
-    console.log('  ✅ Health probe ready & Audit Vault intact\n');
+    console.log('  ✅ Health probes (GET & HEAD) ready & Audit Vault intact\n');
 
     // Test 2: Appointment Booking with Idempotency Key
     console.log('Test 2: Appointment Booking & Idempotency Key Deduplication (ADR-013)...');
@@ -251,7 +259,37 @@ async function runTests() {
     assert.ok(verifyJson.totalBlocksVerified >= 5);
     console.log(`  ✅ SHA-256 Audit Chain verified: ${verifyJson.totalBlocksVerified} blocks intact\n`);
 
-    console.log('🎉 ALL 10 PHASE 3-4 INTEGRATION TESTS PASSED SUCCESSFULLY!');
+    // Test 11: Production Global Error Handler Sanitization
+    console.log('Test 11: Global Error Handler Sanitization in Production...');
+    const prevNodeEnv = process.env.NODE_ENV;
+    const origVerify = auditVault.verifyIntegrity.bind(auditVault);
+    try {
+      process.env.NODE_ENV = 'production';
+      auditVault.verifyIntegrity = () => {
+        throw new Error('sensitive_internal_pg_dsn=postgres://secret');
+      };
+      const errRes = await app.inject({
+        method: 'GET',
+        url: '/health/ready',
+        headers: { 'x-correlation-id': 'test-corr-500' },
+      });
+      assert.equal(errRes.statusCode, 500);
+      assert.equal(errRes.headers['x-correlation-id'], 'test-corr-500');
+      assert.ok(!errRes.body.includes('sensitive_internal_pg_dsn'));
+      const errJson = errRes.json();
+      assert.equal(errJson.message, 'An unexpected internal error occurred.');
+      assert.equal(errJson.correlationId, 'test-corr-500');
+      console.log('  ✅ Unexpected 500 errors sanitized in production mode\n');
+    } finally {
+      auditVault.verifyIntegrity = origVerify;
+      if (prevNodeEnv === undefined) {
+        delete process.env.NODE_ENV;
+      } else {
+        process.env.NODE_ENV = prevNodeEnv;
+      }
+    }
+
+    console.log('🎉 ALL 11 PHASE 3-4 INTEGRATION TESTS PASSED SUCCESSFULLY!');
   } finally {
     await app.close();
   }

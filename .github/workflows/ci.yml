@@ -33,10 +33,13 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm --filter @docaas/database run db:generate || true
+        run: pnpm --filter @docaas/database run db:generate
 
       - name: Run Typecheck
-        run: pnpm run typecheck || true
+        run: pnpm run typecheck
+
+      - name: Build Workspace
+        run: pnpm run build
 
   test:
     name: Automated Test Suite
@@ -92,7 +95,7 @@ jobs:
           test -f packages/database/src/migrations/0002_audit_indexes.sql
 
       - name: Execute Test Suite
-        run: pnpm test || true
+        run: pnpm test
         env:
           NODE_ENV: test
           DATABASE_URL: postgresql://aura_user:aura_test_password@localhost:5432/aura_health_test
@@ -129,4 +132,4 @@ jobs:
           test -f "${{ matrix.service.dockerfile }}"
           grep -q "^FROM " "${{ matrix.service.dockerfile }}"
           grep -q "^EXPOSE " "${{ matrix.service.dockerfile }}"
-          docker compose -f infrastructure/docker/docker-compose.yml config -q || true
+          docker compose -f infrastructure/docker/docker-compose.yml config -q
