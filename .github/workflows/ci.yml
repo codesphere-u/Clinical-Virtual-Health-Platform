@@ -35,11 +35,11 @@ jobs:
       - name: Generate Prisma Client
         run: pnpm --filter @docaas/database run db:generate
 
-      - name: Run Typecheck
-        run: pnpm run typecheck
-
       - name: Build Workspace
         run: pnpm run build
+
+      - name: Run Typecheck
+        run: pnpm run typecheck
 
   test:
     name: Automated Test Suite
