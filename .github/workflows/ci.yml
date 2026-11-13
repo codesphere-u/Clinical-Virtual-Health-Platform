@@ -41,13 +41,16 @@ jobs:
       - name: Run Typecheck
         run: pnpm run typecheck
 
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level=moderate
+
   test:
-    name: Automated Test Suite
+    name: Automated Test Suite & Postgres Migrations
     runs-on: ubuntu-latest
     needs: lint-and-typecheck
     services:
       postgres:
-        image: postgres:16-alpine
+        image: pgvector/pgvector:pg16
         env:
           POSTGRES_USER: aura_user
           POSTGRES_PASSWORD: aura_test_password
@@ -88,11 +91,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Run SQL Schema Validations
+      - name: Apply & Verify PostgreSQL SQL Migrations
         run: |
-          echo "Verifying migration files integrity..."
-          test -f packages/database/src/migrations/0001_initial_schema.sql
-          test -f packages/database/src/migrations/0002_audit_indexes.sql
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client redis-tools >/dev/null
+          redis-cli -h localhost -p 6379 ping | grep -q PONG
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f packages/database/src/migrations/0001_initial_schema.sql
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f packages/database/src/migrations/0002_audit_indexes.sql
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -c "SELECT COUNT(*) AS table_count FROM information_schema.tables WHERE table_schema = 'public';"
+        env:
+          DATABASE_URL: postgresql://aura_user:aura_test_password@localhost:5432/aura_health_test
 
       - name: Execute Test Suite
         run: pnpm test
@@ -106,6 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint-and-typecheck
     strategy:
+      fail-fast: false
       matrix:
         service:
           - context: .
@@ -127,9 +135,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify Dockerfile & Compose Integrity (${{ matrix.service.name }})
+      - name: Build and verify Docker image (${{ matrix.service.name }})
         run: |
-          test -f "${{ matrix.service.dockerfile }}"
-          grep -q "^FROM " "${{ matrix.service.dockerfile }}"
-          grep -q "^EXPOSE " "${{ matrix.service.dockerfile }}"
           docker compose -f infrastructure/docker/docker-compose.yml config -q
+          docker build -f "${{ matrix.service.dockerfile }}" -t "${{ matrix.service.name }}:ci" "${{ matrix.service.context }}"
+          docker run --rm "${{ matrix.service.name }}:ci" node -e "if (process.getuid && process.getuid() === 0) process.exit(1)"

@@ -115,19 +115,19 @@ export type UploadCredentialInput = z.infer<typeof UploadCredentialSchema>;
 // ==========================================
 
 export const BookAppointmentSchema = z.object({
-  clinicianId: z.string().uuid(),
-  slotId: z.string().uuid().optional(),
+  clinicianId: z.guid(),
+  slotId: z.guid().optional(),
   scheduledStart: z.string().datetime(),
   scheduledEnd: z.string().datetime(),
   encounterType: z.nativeEnum(EncounterType).default(EncounterType.TELEMEDICINE_VIDEO),
   presentingReason: z.string().min(5, 'Please provide a brief reason for the consultation'),
-  idempotencyKey: z.string().uuid('Idempotency key required'),
+  idempotencyKey: z.guid('Idempotency key required'),
 });
 
 export type BookAppointmentInput = z.infer<typeof BookAppointmentSchema>;
 
 export const WaitingRoomHeartbeatSchema = z.object({
-  appointmentId: z.string().uuid(),
+  appointmentId: z.guid(),
   participantRole: z.nativeEnum(UserRole),
   audioMuted: z.boolean().default(false),
   videoMuted: z.boolean().default(false),
@@ -160,7 +160,7 @@ export const DiagnosisItemSchema = z.object({
 });
 
 export const SaveClinicalNoteSchema = z.object({
-  appointmentId: z.string().uuid(),
+  appointmentId: z.guid(),
   presentingComplaint: z.string().min(3, 'Presenting complaint required'),
   historyOfPresentingComplaint: z.string().min(5, 'History required'),
   pastMedicalHistory: z.string().optional(),
@@ -180,7 +180,7 @@ export const SaveClinicalNoteSchema = z.object({
   aiGeneratedDraft: z.boolean().default(false),
   aiModelVersion: z.string().optional(),
   clinicianReviewedAndApproved: z.boolean().default(true),
-  idempotencyKey: z.string().uuid().optional(),
+  idempotencyKey: z.guid().optional(),
 });
 
 export type SaveClinicalNoteInput = z.infer<typeof SaveClinicalNoteSchema>;
@@ -202,11 +202,11 @@ export const PrescriptionItemSchema = z.object({
 });
 
 export const CreatePrescriptionSchema = z.object({
-  appointmentId: z.string().uuid(),
-  patientId: z.string().uuid(),
+  appointmentId: z.guid(),
+  patientId: z.guid(),
   items: z.array(PrescriptionItemSchema).min(1, 'At least one medication item required'),
   dispensingPharmacyNotes: z.string().optional(),
-  idempotencyKey: z.string().uuid('Idempotency key required'),
+  idempotencyKey: z.guid('Idempotency key required'),
 });
 
 export type CreatePrescriptionInput = z.infer<typeof CreatePrescriptionSchema>;
@@ -216,8 +216,8 @@ export type CreatePrescriptionInput = z.infer<typeof CreatePrescriptionSchema>;
 // ==========================================
 
 export const OrderInvestigationSchema = z.object({
-  appointmentId: z.string().uuid(),
-  patientId: z.string().uuid(),
+  appointmentId: z.guid(),
+  patientId: z.guid(),
   testType: z.string().min(2), // e.g. Full Blood Count, Lipid Profile, Chest X-Ray
   clinicalIndication: z.string().min(5, 'Clinical indication required'),
   priority: z.enum(['routine', 'urgent', 'two_week_wait']).default('routine'),
@@ -231,7 +231,7 @@ export type OrderInvestigationInput = z.infer<typeof OrderInvestigationSchema>;
 // ==========================================
 
 export const SubmitFeedbackSchema = z.object({
-  appointmentId: z.string().uuid(),
+  appointmentId: z.guid(),
   rating: z.number().int().min(1).max(5),
   communicationRating: z.number().int().min(1).max(5).optional(),
   clarityRating: z.number().int().min(1).max(5).optional(),
