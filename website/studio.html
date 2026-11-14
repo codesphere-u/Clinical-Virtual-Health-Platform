@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compliance Studio — CCMP v1.1.0</title>
+  <meta name="description" content="Interactive NDPA 2023 / UK GDPR data residency and drug-allergy contraindication simulator.">
+  <link rel="canonical" href="https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/studio.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="CCMP"><span>CCMP</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="nav-links" class="nav-links" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a class="active" href="studio.html">Compliance Studio</a>
+        <a href="proof.html">Architecture Proof</a>
+        <a href="rules.html">Safety Rules</a>
+        <a href="docs.html">Docs</a>
+        <a class="nav-cta" href="https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/releases/tag/v1.1.0">v1.1.0 Release</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 3rem 0 4rem;">
+    <span class="eyebrow">Residency &amp; Clinical Safety Guard</span>
+    <h1>Clinical Compliance Studio</h1>
+    <p class="lead">Simulate dual-jurisdiction residency routing and real-time drug-allergy prescription blocking.</p>
+
+    <div class="studio-grid">
+      <section class="card card-white">
+        <h2>Case Parameters</h2>
+        <div class="field">
+          <label for="studio-jurisdiction">Patient Jurisdiction</label>
+          <select id="studio-jurisdiction">
+            <option value="NG">Nigeria (NDPA 2023)</option>
+            <option value="UK">United Kingdom (UK GDPR)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="studio-allergy">Recorded Allergy</label>
+          <select id="studio-allergy">
+            <option value="penicillin">Penicillin</option>
+            <option value="sulfa">Sulfonamides</option>
+            <option value="none">None recorded</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="studio-med">Proposed Prescription</label>
+          <select id="studio-med">
+            <option value="amoxicillin">Amoxicillin 500mg</option>
+            <option value="cotrimoxazole">Co-trimoxazole 960mg</option>
+            <option value="azithromycin">Azithromycin 500mg</option>
+          </select>
+        </div>
+        <button id="studio-run" class="btn btn-primary" type="button" style="width:100%;">Validate Clinical Guard</button>
+      </section>
+
+      <section class="card">
+        <span class="badge">Audit Ledger Output</span>
+        <h2 style="margin-top:0.6rem;">Residency &amp; Allergy Decision</h2>
+        <pre id="studio-output" class="code-block">{}</pre>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>CCMP v1.1.0</strong> · Compliance Studio</div>
+      <div class="footer-links"><a href="index.html">Overview</a><a href="proof.html">Architecture Proof</a><a href="docs.html">Docs</a></div>
+    </div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

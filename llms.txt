@@ -1,0 +1,11 @@
+# Clinical Case Management Platform (CCMP `v1.1.0`)
+
+> Cross-border digital clinical case management and telemedicine ecosystem connecting patients in Nigeria with GMC-registered British specialists and MDCN consultants under NDPA 2023 and UK GDPR.
+
+- Website: https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/
+- Compliance Studio: https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/studio.html
+- Architecture Proof: https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/proof.html
+- Safety Rules: https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/rules.html
+- Documentation: https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/docs.html
+- Repository: https://github.com/codesphere-u/Clinical-Virtual-Health-Platform
+- License: MIT

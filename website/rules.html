@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety Rules — CCMP v1.1.0</title>
+  <meta name="description" content="NDPA 2023, UK GDPR, drug-allergy blocking, mandatory AI Scribe clinician sign-off, and SHA-256 audit chain rules.">
+  <link rel="canonical" href="https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/rules.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="CCMP"><span>CCMP</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="nav-links" class="nav-links" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="studio.html">Compliance Studio</a>
+        <a href="proof.html">Architecture Proof</a>
+        <a class="active" href="rules.html">Safety Rules</a>
+        <a href="docs.html">Docs</a>
+        <a class="nav-cta" href="https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/releases/tag/v1.1.0">v1.1.0 Release</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 3rem 0 4rem;">
+    <span class="eyebrow">Clinical Governance &amp; Compliance</span>
+    <h1>Clinical Safety &amp; Privacy Rules</h1>
+    <p class="lead">Mandatory invariants enforced across prescriptions, video consultations, and cross-border records.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Rule</th><th>Enforcement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dual-Jurisdiction Residency</td><td>Enforces Nigeria NDPA 2023 and UK GDPR / DPA 2018 data residency routing</td></tr>
+          <tr><td>Drug-Allergy Blocking</td><td>Halts contraindicated prescriptions before clinician sign-off</td></tr>
+          <tr><td>Assistive AI Scribe Gate</td><td>Requires explicit GMC/MDCN clinician review before committing SOAP notes</td></tr>
+          <tr><td>SHA-256 Audit Ledger</td><td>Chains every prescription, addendum, and access event cryptographically</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>CCMP v1.1.0</strong> · Safety Rules</div>
+      <div class="footer-links"><a href="index.html">Overview</a><a href="studio.html">Compliance Studio</a><a href="docs.html">Docs</a></div>
+    </div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you cite or use this software in research, systems, or publications, please cite it as below."
+authors:
+  - family-names: "Akandwanaho"
+    given-names: "Ivan"
+    email: "codesphereinnovationz@gmail.com"
+    affiliation: "Codesphere Innovations (U) Limited"
+title: "Clinical Case Management Platform (CCMP)"
+abstract: "Cross-Border Digital Clinical Case Management and Telemedicine Ecosystem with Dual-Jurisdiction NDPA 2023 & UK GDPR Compliance"
+version: "1.1.0"
+date-released: 2026-11-14
+url: "https://github.com/codesphere-u/Clinical-Virtual-Health-Platform"
+repository-code: "https://github.com/codesphere-u/Clinical-Virtual-Health-Platform"
+license: "MIT"

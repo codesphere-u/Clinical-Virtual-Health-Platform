@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architecture Proof — CCMP v1.1.0</title>
+  <meta name="description" content="16/16 Turborepo workspace builds and tests across 4 Next.js 15 portals, Fastify API, Prisma schema, and domain packages.">
+  <link rel="canonical" href="https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/proof.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="CCMP"><span>CCMP</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="nav-links" class="nav-links" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="studio.html">Compliance Studio</a>
+        <a class="active" href="proof.html">Architecture Proof</a>
+        <a href="rules.html">Safety Rules</a>
+        <a href="docs.html">Docs</a>
+        <a class="nav-cta" href="https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/releases/tag/v1.1.0">v1.1.0 Release</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 3rem 0 4rem;">
+    <span class="eyebrow eyebrow-navy">Verified Monorepo Build &amp; Test Matrix</span>
+    <h1>16 / 16 Turborepo Tasks Passing</h1>
+    <p class="lead">Every workspace package and Next.js 15 portal compiles cleanly and passes domain transition and validation suites.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Layer</th><th>Packages / Portals</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Next.js 15 Portals</td><td><code>patient-web</code>, <code>clinician-web</code>, <code>admin-web</code>, <code>analytics-web</code></td><td>Build &amp; Lint Green</td></tr>
+          <tr><td>Backend &amp; Data</td><td><code>@docaas/api-service</code> (Fastify 5.1), <code>@docaas/database</code> (Prisma 6.2)</td><td>Generated &amp; Green</td></tr>
+          <tr><td>Domain &amp; Validation</td><td><code>@docaas/domain</code>, <code>@docaas/validation</code>, <code>@docaas/auth</code>, <code>@docaas/video</code></td><td>Tests Passing</td></tr>
+          <tr><td>Native Flutter</td><td><code>patient</code>, <code>clinician</code>, <code>desktop</code> + 7 shared Flutter packages</td><td>Monorepo Ready</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>CCMP v1.1.0</strong> · Architecture Proof</div>
+      <div class="footer-links"><a href="index.html">Overview</a><a href="rules.html">Safety Rules</a><a href="docs.html">Docs</a></div>
+    </div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

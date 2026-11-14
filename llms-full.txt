@@ -1,0 +1,9 @@
+# Clinical Case Management Platform (CCMP `v1.1.0`) — Technical Reference
+
+CCMP combines 4 Next.js 15 portals (`patient-web`, `clinician-web`, `admin-web`, `analytics-web`), Fastify 5.1 (`services/api`), Prisma 6.2 (`packages/database`), LiveKit WebRTC SFU, and Flutter mobile/desktop apps (`flutter/apps/{patient,clinician,desktop}`).
+
+Key safeguards:
+- Dual-jurisdiction data residency routing (Nigeria NDPA 2023 & UK GDPR / DPA 2018)
+- Real-time drug-allergy blocking engine & assistive AI Scribe requiring clinician sign-off
+- SHA-256 chained cryptographic audit trail across prescriptions, addenda, and record access
+- WCAG 2.2 AA/AAA clinical design system

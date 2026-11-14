@@ -1,0 +1,3 @@
+# Clinical Case Management Platform (CCMP `v1.1.0`) — Technical Reference
+
+CCMP combines 4 Next.js 15 portals (`patient-web`, `clinician-web`, `admin-web`, `analytics-web`), Fastify 5.1 (`services/api`), Prisma 6.2 (`packages/database`), LiveKit WebRTC SFU, and Flutter mobile/desktop apps (`flutter/apps/{patient,clinician,desktop}`).

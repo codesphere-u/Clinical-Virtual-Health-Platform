@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Pages](https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/actions/workflows/pages.yml/badge.svg)](https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.1-black?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Fastify](https://img.shields.io/badge/Fastify-5.1-white?logo=fastify&logoColor=black)](https://fastify.dev/)

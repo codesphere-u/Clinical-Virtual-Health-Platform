@@ -1,0 +1,16 @@
+{
+  "name": "Clinical Case Management Platform (CCMP)",
+  "short_name": "CCMP",
+  "version": "1.1.0",
+  "start_url": "/Clinical-Virtual-Health-Platform/",
+  "display": "standalone",
+  "background_color": "#fffdf2",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

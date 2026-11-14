@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#fffdf2"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="#f7f5e8" stroke="#0d9488" stroke-width="4"/>
+  <rect x="92" y="96" width="210" height="44" rx="22" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+  <text x="118" y="125" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#115e59">CCMP v1.1.0</text>
+  <text x="92" y="245" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#1b1a17">Cross-border clinical</text>
+  <text x="92" y="325" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#0d9488">case management.</text>
+  <text x="92" y="405" font-family="system-ui, sans-serif" font-size="28" fill="#57534e">NDPA 2023 &amp; UK GDPR · 4 Next.js Portals · LiveKit SFU · SHA-256 Audit Ledger</text>
+  <rect x="92" y="466" width="240" height="56" rx="14" fill="#0d9488"/>
+  <text x="128" y="502" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#fffdf2">16 / 16 Turbo Tasks</text>
+  <rect x="356" y="466" width="280" height="56" rx="14" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="386" y="502" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#1e3a8a">WCAG 2.2 AA/AAA</text>
+</svg>

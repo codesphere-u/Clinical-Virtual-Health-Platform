@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — CCMP v1.1.0</title>
+  <meta name="description" content="Monorepo quickstart, Prisma schema generation, Turborepo verification, and Next.js portal ports for CCMP v1.1.0.">
+  <link rel="canonical" href="https://codesphere-u.github.io/Clinical-Virtual-Health-Platform/docs.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="CCMP"><span>CCMP</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+      <nav id="nav-links" class="nav-links" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="studio.html">Compliance Studio</a>
+        <a href="proof.html">Architecture Proof</a>
+        <a href="rules.html">Safety Rules</a>
+        <a class="active" href="docs.html">Docs</a>
+        <a class="nav-cta" href="https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/releases/tag/v1.1.0">v1.1.0 Release</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container docs-layout">
+    <aside class="docs-sidebar" aria-label="Documentation sections">
+      <h4>CCMP Docs</h4>
+      <a class="active" href="#install">1. Monorepo Setup</a>
+      <a href="#verify">2. Build &amp; Test</a>
+      <a href="#portals">3. Web Portals</a>
+      <a href="#webrtc">4. LiveKit WebRTC</a>
+    </aside>
+
+    <article class="docs-article">
+      <span class="eyebrow">Reference · v1.1.0</span>
+      <h1 style="margin-top:0.85rem;">CCMP Documentation</h1>
+      <p class="lead">Requires Node.js 20+ and pnpm 9+.</p>
+
+      <section id="install">
+        <h2>1. Monorepo Setup</h2>
+        <pre class="code-block">pnpm install
+pnpm db:generate</pre>
+      </section>
+
+      <section id="verify">
+        <h2>2. Build &amp; Test Matrix</h2>
+        <pre class="code-block">pnpm typecheck
+pnpm test
+pnpm build</pre>
+      </section>
+
+      <section id="portals">
+        <h2>3. The 4 Web Portals</h2>
+        <ul>
+          <li><code>patient-web</code> — Port <code>3000</code></li>
+          <li><code>clinician-web</code> — Port <code>3002</code></li>
+          <li><code>admin-web</code> — Port <code>3003</code></li>
+          <li><code>analytics-web</code> — Port <code>3004</code></li>
+        </ul>
+      </section>
+
+      <section id="webrtc">
+        <h2>4. LiveKit WebRTC SFU</h2>
+        <p>Provides adaptive bitrate video consultations with sub-200ms latency between Lagos and London.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>CCMP v1.1.0</strong> · Documentation</div>
+      <div class="footer-links"><a href="index.html">Overview</a><a href="studio.html">Compliance Studio</a><a href="https://github.com/codesphere-u/Clinical-Virtual-Health-Platform">GitHub</a></div>
+    </div>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
